@@ -1,6 +1,122 @@
-.............................................................................................
+test_candidate_query_streams_in_index_order_without_temp_sort (tests.test_io.InputIndexTests) ... ok
+test_default_map_file_matches_defaults (tests.test_io.InputIndexTests) ... ok
+test_dotted_array_literal_and_null_field_mappings (tests.test_io.InputIndexTests) ... ok
+test_failed_context_entry_closes_and_removes_partial_index (tests.test_io.InputIndexTests) ... ok
+test_future_equal_and_unknown_times_are_excluded_even_with_matching_goal (tests.test_io.InputIndexTests) ... ok
+test_inspect_prints_three_rows_and_recursively_truncates_strings (tests.test_io.InputIndexTests) ... ok
+test_inspect_samples_three_nonblank_rows_with_a_physical_limit (tests.test_io.InputIndexTests) ... ok
+test_invalid_field_map_is_an_explicit_error (tests.test_io.InputIndexTests) ... ok
+test_limit_counts_physical_lines_including_blank_lines (tests.test_io.InputIndexTests) ... ok
+test_malformed_json_error_names_physical_source_row (tests.test_io.InputIndexTests) ... ok
+test_old_matching_goal_uses_the_same_tokens_as_claims (tests.test_io.InputIndexTests) ... ok
+test_persisted_payload_excludes_narration_and_preserves_structures (tests.test_io.InputIndexTests) ... ok
+test_plain_fallback_and_gzip_preference (tests.test_io.InputIndexTests) ... ok
+test_session_agent_enrichment_requires_one_owner (tests.test_io.InputIndexTests) ... ok
+test_temp_index_is_inside_out_and_removed_on_normal_exit (tests.test_io.InputIndexTests) ... ok
+test_iso_offsets_naive_seconds_and_milliseconds_agree (tests.test_io.TimestampTests) ... ok
+test_malformed_timestamps_do_not_supply_temporal_evidence (tests.test_io.TimestampTests) ... ok
+test_accepted_asynchronous_request_is_not_complete (tests.test_outcomes.OutcomeTests) ... ok
+test_explicit_delivery_receipt_can_precede_waiting_for_a_reply (tests.test_outcomes.OutcomeTests) ... ok
+test_failure_with_a_pending_retry_still_establishes_failure (tests.test_outcomes.OutcomeTests) ... ok
+test_preparation_success_does_not_establish_delivery (tests.test_outcomes.OutcomeTests) ... ok
+test_absence_is_not_shown (tests.test_receipts.AdversarialTests) ... ok
+test_claim_text_cannot_supply_its_own_success_receipt (tests.test_receipts.AdversarialTests) ... ok
+test_configurable_window_changes_available_evidence (tests.test_receipts.AdversarialTests) ... ok
+test_explicit_false_success_is_failure (tests.test_receipts.AdversarialTests) ... ok
+test_failed_rollback_does_not_undo_completed_deployment (tests.test_receipts.AdversarialTests) ... ok
+test_failed_send_then_confirmed_retry_reports_conflict (tests.test_receipts.AdversarialTests) ... ok
+test_failure_for_other_operation_does_not_override_success (tests.test_receipts.AdversarialTests) ... ok
+test_failure_then_pending_retry_stays_contradicted (tests.test_receipts.AdversarialTests) ... ok
+test_first_person_contraction_is_a_claim (tests.test_receipts.AdversarialTests) ... ok
+test_future_success_does_not_count_even_with_matching_session (tests.test_receipts.AdversarialTests) ... ok
+test_http_failure_status_overrides_success_message_in_same_turn (tests.test_receipts.AdversarialTests) ... ok
+test_http_get_request_line_does_not_prove_post (tests.test_receipts.AdversarialTests) ... ok
+test_http_get_success_is_not_evidence_of_post (tests.test_receipts.AdversarialTests) ... ok
+test_http_post_success_proves_matching_post (tests.test_receipts.AdversarialTests) ... ok
+test_inspect_truncates_long_text (tests.test_receipts.AdversarialTests) ... ok
+test_matching_session_goal_retrieves_older_turns (tests.test_receipts.AdversarialTests) ... ok
+test_nested_agent_message_in_tool_output_is_not_a_receipt (tests.test_receipts.AdversarialTests) ... ok
+test_nested_field_map_works_for_chat_and_turns (tests.test_receipts.AdversarialTests) ... ok
+test_old_turn_without_matching_session_is_not_shown (tests.test_receipts.AdversarialTests) ... ok
+test_other_agents_success_does_not_count (tests.test_receipts.AdversarialTests) ... ok
+test_other_target_failure_does_not_count (tests.test_receipts.AdversarialTests) ... ok
+test_other_target_success_does_not_count (tests.test_receipts.AdversarialTests) ... ok
+test_output_failure_for_other_target_does_not_contradict_request_target (tests.test_receipts.AdversarialTests) ... ok
+test_output_success_for_other_target_does_not_prove_request_target (tests.test_receipts.AdversarialTests) ... ok
+test_plans_questions_reported_speech_and_negation_are_skipped (tests.test_receipts.AdversarialTests) ... ok
+test_queued_rollback_does_not_undo_completed_deployment (tests.test_receipts.AdversarialTests) ... ok
+test_queued_rollback_without_original_receipt_is_not_shown (tests.test_receipts.AdversarialTests) ... ok
+test_quoted_agent_transcript_in_tool_output_is_not_a_receipt (tests.test_receipts.AdversarialTests) ... ok
+test_receipt_for_wrong_recipient_does_not_prove_send (tests.test_receipts.AdversarialTests) ... ok
+test_reported_quote_containing_multiple_sentences_is_skipped (tests.test_receipts.AdversarialTests) ... ok
+test_rollback_after_success_contradicts_deployment (tests.test_receipts.AdversarialTests) ... ok
+test_same_target_read_success_does_not_prove_send (tests.test_receipts.AdversarialTests) ... ok
+test_same_target_unrelated_failure_does_not_contradict_send (tests.test_receipts.AdversarialTests) ... ok
+test_screenshot_metadata_is_not_evidence (tests.test_receipts.AdversarialTests) ... ok
+test_single_quoted_other_agent_speech_is_skipped (tests.test_receipts.AdversarialTests) ... ok
+test_specific_failure_overrides_successful_read (tests.test_receipts.AdversarialTests) ... ok
+test_string_http_status_receipt_is_literal (tests.test_receipts.AdversarialTests) ... ok
+test_structured_echo_command_does_not_prove_send (tests.test_receipts.AdversarialTests) ... ok
+test_structured_http_status_success_and_failure (tests.test_receipts.AdversarialTests) ... ok
+test_structured_read_command_does_not_prove_send (tests.test_receipts.AdversarialTests) ... ok
+test_success_then_failed_resend_reports_conflict (tests.test_receipts.AdversarialTests) ... ok
+test_successful_rollback_contradicts_completed_deployment (tests.test_receipts.AdversarialTests) ... ok
+test_target_in_unrelated_output_line_does_not_link_success (tests.test_receipts.AdversarialTests) ... ok
+test_turn_agent_messages_are_not_evidence (tests.test_receipts.AdversarialTests) ... ok
+test_zero_or_no_errors_do_not_negate_success (tests.test_receipts.AdversarialTests) ... ok
+test_fixture_regeneration_is_deterministic (tests.test_receipts.FixtureTests) ... ok
+test_inspect_reports_layout_and_keys (tests.test_receipts.FixtureTests) ... ok
+test_limit_caps_rows_per_input (tests.test_receipts.FixtureTests) ... ok
+test_outputs_include_summary_and_memory_check (tests.test_receipts.FixtureTests) ... ok
+test_receipts_reference_real_tool_outputs (tests.test_receipts.FixtureTests) ... ok
+test_sonny_confusion_table (tests.test_receipts.FixtureTests) ... ok
+test_deciding_receipts_identify_the_planted_turn (tests.test_round1.Round1FixtureTests) ... ok
+test_extraction_recall_and_confusion_table (tests.test_round1.Round1FixtureTests) ... ok
+test_fixture_regeneration_is_deterministic (tests.test_round1.Round1FixtureTests) ... ok
+test_draft_saved_with_success_status_never_proves_delivery (tests.test_round1.Round1SignalsRegressionTests) ... ok
+test_git_reference_updates_show_push_but_do_not_show_merge_or_deploy (tests.test_round1.Round1SignalsRegressionTests) ... ok
+test_missing_required_field_is_tied_to_the_requested_action (tests.test_round1.Round1SignalsRegressionTests) ... ok
+test_requested_failure_phrases_with_a_matching_task (tests.test_round1.Round1SignalsRegressionTests) ... ok
+test_requested_http_failures_in_plain_http_and_nested_outputs (tests.test_round1.Round1SignalsRegressionTests) ... ok
+test_requested_success_signals_need_matching_mutating_actions (tests.test_round1.Round1SignalsRegressionTests) ... ok
+test_row_counts_and_negated_receipts_do_not_become_successes (tests.test_round1.Round1SignalsRegressionTests) ... ok
+test_by_can_describe_a_method_without_naming_another_agent (tests.test_round1_review.RoundOneBoundaryReviewTests) ... ok
+test_context_is_preserved_across_linked_completion_verbs (tests.test_round1_review.RoundOneBoundaryReviewTests) ... ok
+test_current_states_and_named_done_closers_are_claims (tests.test_round1_review.RoundOneBoundaryReviewTests) ... ok
+test_done_closer_does_not_take_credit_for_another_actor (tests.test_round1_review.RoundOneBoundaryReviewTests) ... ok
+test_inverted_questions_without_punctuation_are_skipped (tests.test_round1_review.RoundOneBoundaryReviewTests) ... ok
+test_known_participant_states_are_skipped_and_named_artifact_remains (tests.test_round1_review.RoundOneBoundaryReviewTests) ... ok
+test_linked_own_completions_are_separate_claims (tests.test_round1_review.RoundOneBoundaryReviewTests) ... ok
+test_plan_and_future_states_are_not_completed_work (tests.test_round1_review.RoundOneBoundaryReviewTests) ... ok
+test_quoted_bare_completion_and_state_are_not_our_claims (tests.test_round1_review.RoundOneBoundaryReviewTests) ... ok
+test_role_prefix_and_other_person_states_are_not_our_claims (tests.test_round1_review.RoundOneBoundaryReviewTests) ... ok
+test_state_in_a_conditional_does_not_assert_completion (tests.test_round1_review.RoundOneBoundaryReviewTests) ... ok
+test_deciding_receipts_reference_planted_rows_and_conflicts_explain_both (tests.test_round2.Round2FixtureTests) ... ok
+test_extraction_recall_and_confusion_table (tests.test_round2.Round2FixtureTests) ... ok
+test_fixture_regeneration_is_deterministic (tests.test_round2.Round2FixtureTests) ... ok
+test_anonymous_receipts_fit_each_operation (tests.test_round2.Round2LinkingTests) ... ok
+test_conflicting_turns_are_contradicted_with_both_rows_in_either_order (tests.test_round2.Round2LinkingTests) ... ok
+test_draft_with_status_and_delivery_words_still_cannot_prove_send (tests.test_round2.Round2LinkingTests) ... ok
+test_explicit_different_object_is_not_a_neutral_ui_or_routing_action (tests.test_round2.Round2LinkingTests) ... ok
+test_explicit_wrong_object_or_recipient_outweighs_matching_action (tests.test_round2.Round2LinkingTests) ... ok
+test_goal_does_not_replace_an_explicit_different_action_target (tests.test_round2.Round2LinkingTests) ... ok
+test_goal_only_link_outside_window_does_not_count (tests.test_round2.Round2LinkingTests) ... ok
+test_goal_target_links_an_operation_that_omits_the_object (tests.test_round2.Round2LinkingTests) ... ok
+test_incompatible_typed_success_is_not_repaired_by_success_modifier_or_status (tests.test_round2.Round2LinkingTests) ... ok
+test_mixed_failure_wins_even_when_success_url_is_generic (tests.test_round2.Round2LinkingTests) ... ok
+test_neutral_ui_action_mixed_failure_wins_over_compatible_success (tests.test_round2.Round2LinkingTests) ... ok
+test_neutral_ui_action_uses_goal_and_compatible_receipt (tests.test_round2.Round2LinkingTests) ... ok
+test_operation_mismatch_does_not_become_proof_from_generic_output (tests.test_round2.Round2LinkingTests) ... ok
+test_other_agents_future_and_narration_remain_ineligible (tests.test_round2.Round2LinkingTests) ... ok
+test_partial_meaningful_object_overlap_is_sufficient (tests.test_round2.Round2LinkingTests) ... ok
+test_push_receipt_must_name_claimed_destination_branch (tests.test_round2.Round2LinkingTests) ... ok
+test_ui_and_routing_action_shapes_link_to_goal_object (tests.test_round2.Round2LinkingTests) ... ok
+test_goal_is_joined_for_exact_agent_and_session_only (tests.test_round2_io.CandidateContextTests) ... ok
+test_goal_join_keeps_agent_time_index_order_without_temporary_sort (tests.test_round2_io.CandidateContextTests) ... ok
+test_window_metadata_distinguishes_old_goal_related_turns (tests.test_round2_io.CandidateContextTests) ... ok
+
 ----------------------------------------------------------------------
-Ran 93 tests in 3.770s
+Ran 116 tests in 4.042s
 
 OK
 
@@ -14,6 +130,13 @@ not shown              0             0          20
 
 Round 1 extraction recall: 30/30 (100.0%)
 Round 1 confusion table (rows = planted truth; columns = tool answer; extracted claims only)
+truth              shown  contradicted   not shown
+shown                 10             0           0
+contradicted           0            10           0
+not shown              0             0          10
+
+Round 2 extraction recall: 30/30 (100.0%)
+Round 2 confusion table (rows = planted truth; columns = tool answer; extracted claims only)
 truth              shown  contradicted   not shown
 shown                 10             0           0
 contradicted           0            10           0

@@ -174,7 +174,8 @@ class InputIndexTests(unittest.TestCase):
             self.assertNotIn("Narration", raw)
             self.assertLess(len(raw), 1000)
             row = next(index.candidates("Ada", CLAIM_TIME))
-            self.assertEqual(set(row), {"agent", "time", "session", "action", "output", "source", "row_id"})
+            self.assertEqual(set(row), {"agent", "time", "session", "action", "output", "source", "row_id",
+                                        "session_goal", "within_window"})
             self.assertEqual(row["action"], original["agent_action"])
             self.assertEqual(row["output"], original["tool_output"])
 

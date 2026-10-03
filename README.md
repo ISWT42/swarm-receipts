@@ -44,6 +44,15 @@ reports with:
 python swarm_receipts.py --data fixtures/round1 --out results/round1
 ```
 
+The second review added `fixtures/round2`: 30 new claims, balanced across the
+three answers, plus six exclusion statements. Its receipts omit object names
+while actions or session goals name them. Tests cover compatible outcomes,
+UI actions, exact push destinations and both orders of conflicting turns.
+
+```sh
+python swarm_receipts.py --data fixtures/round2 --out results/round2
+```
+
 The run writes:
 
 - `results/claims.csv`: one row per extracted claim, including its agent, time,
@@ -132,9 +141,12 @@ from “Atlas is live” when Birch is an agent and Atlas is an artifact. Unknow
 names and implicit attribution remain limitations of these rules.
 
 Candidate turns must belong to the same agent and fall before the claim.
-Action and target relevance narrow the candidates before concrete success or
-failure signals decide an answer. All meaningful target words must match;
-partial overlap cannot identify a different recipient or artifact. Structured
+Within the time window, meaningful object words may overlap the turn's action
+or its same-agent session goal. The tool output can then supply a fitting
+outcome without repeating the object: for example, a post confirmation with
+a URL, a live deployment URL with a 2xx status, or a push ref update to the
+named branch. Explicitly different recipients and objects remain excluded.
+Older goal-retrieved turns retain the stricter direct action matching. Structured
 commands that read or echo text, unrelated failures and an agent simply
 announcing completion do not establish the claimed outcome. Ambiguous cases
 remain not shown.
@@ -145,16 +157,19 @@ include refused or denied operations, missing required fields, timeouts,
 incomplete operations, confirmed undo and HTTP errors. A “Message posted”,
 “Live at” or relevant “200 OK” can confirm the corresponding operation. Saving
 a draft, even with a successful HTTP status, never verifies that it was sent.
+Delivery, posting, uploading and submission receipts remain distinct: a post
+confirmation does not verify an email send, and an upload does not verify a
+submission.
 
 Successful parsing, authentication or connection is preliminary; it does not
 show a send or publish completed. Pending responses and HTTP 202 acceptance
 also remain not shown unless a concrete completion receipt is present.
 
-A relevant successful receipt after an earlier failure gives shown: the later
-attempt succeeded. A failure after a successful action gives not shown unless
-the record clearly shows that success was undone. A later confirmed rollback
-gives contradicted. This avoids treating a failed repeat attempt as proof that
-the earlier success never happened.
+A failure signal on a turn wins over success text on that turn. If separate
+relevant turns contain success and failure, the answer is contradicted and
+the reason cites both rows. This policy preserves the conflict for review,
+including a failed attempt followed by a successful retry. A pending or failed
+undo does not establish that the original action was undone.
 
 Missing or invalid claim timestamps give not shown. Turns with missing or
 invalid timestamps cannot serve as timed evidence. Naive ISO timestamps are

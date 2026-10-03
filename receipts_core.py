@@ -30,7 +30,7 @@ VERB_CATEGORY = {
     "sent": "send", "emailed": "send", "published": "publish", "posted": "post",
     "saved": "save", "submitted": "submit", "fixed": "fix", "repaired": "fix",
     "deployed": "deploy", "launched": "deploy", "live": "deploy", "up": "deploy",
-    "uploaded": "submit", "finished": "complete", "completed": "complete",
+    "uploaded": "upload", "finished": "complete", "completed": "complete",
     "did": "complete", "done": "complete", "merged": "merge", "shipped": "ship",
     "scheduled": "schedule", "booked": "book", "filed": "file",
     "created": "create", "updated": "update", "pushed": "push",
@@ -90,7 +90,8 @@ ACTION_PATTERNS = {
     "publish": re.compile(r"\b(?:publish|published|publication|post|posted)\b|--request\s+POST\b|-X\s*POST\b", re.I),
     "post": re.compile(r"\b(?:post|posted|publish|published|send|sent)\b|--request\s+POST\b|-X\s*POST\b", re.I),
     "save": re.compile(r"\b(?:save|saved|write|written|persist|store|create|created)\b|write_file|write_text", re.I),
-    "submit": re.compile(r"\b(?:submit|submitted|submission|upload|uploaded|post|posted)\b|--request\s+POST\b|-X\s*POST\b", re.I),
+    "submit": re.compile(r"\b(?:submit|submitted|submission|post|posted)\b|--request\s+POST\b|-X\s*POST\b", re.I),
+    "upload": re.compile(r"\b(?:upload|uploaded|uploading|store|stored)\b|--request\s+POST\b|-X\s*POST\b", re.I),
     "fix": re.compile(r"\b(?:fix|fixed|repair|patch|patched|test|tests|pytest|unittest)\b", re.I),
     "deploy": re.compile(r"\b(?:deploy|deployed|deployment|rollout|release|released|launch|launched)\b|kubectl\s+apply", re.I),
     "push": re.compile(r"\b(?:push|pushed)\b", re.I),
@@ -128,19 +129,20 @@ EXIT_STATUS = re.compile(r"\b(?:exit(?:_code| code)?|returncode|return_code)\s*[
 GENERIC_SUCCESS = re.compile(r"\b(?:successfully|succeeded|successful|success|completed|accepted)\b", re.I)
 GIT_REF_SUCCESS = re.compile(
     r"^\s*(?:[=*+]\s+)?(?:[0-9a-f]{3,40}\.\.[0-9a-f]{3,40}|\[new\s+branch\])"
-    r"\s+\S+\s+->\s+\S+(?:\s|$)", re.I)
+    r"\s+(?P<source>\S+)\s+->\s+(?P<branch>\S+)(?:\s|$)", re.I)
 DRAFT = re.compile(r"\b(?:draft|drafts|unsent)\b", re.I)
 DRAFT_OPERATION = re.compile(
     r"^\s*(?:save|saved|create|created|write|written|update|updated|edit|edited|"
     r"store|stored|persist|persisted)\b[^\n;]{0,160}\bdraft\b", re.I)
 SPECIFIC_SUCCESS = {
-    "send": re.compile(r"\b(?:sent|delivered|message\s+posted)\b", re.I),
+    "send": re.compile(r"\b(?:sent|delivered)\b", re.I),
     "publish": re.compile(r"\b(?:published|posted)\b", re.I),
-    "post": re.compile(r"\b(?:posted|published|sent)\b", re.I),
+    "post": re.compile(r"\b(?:posted|published)\b", re.I),
     "save": re.compile(r"\b(?:saved|written|persisted|stored)\b", re.I),
-    "submit": re.compile(r"\b(?:submitted|uploaded|accepted)\b", re.I),
+    "submit": re.compile(r"\b(?:submitted|accepted)\b", re.I),
+    "upload": re.compile(r"\b(?:uploaded|stored)\b", re.I),
     "fix": re.compile(r"\b(?:fixed|repaired|tests?\s+passed|all\s+tests?\s+pass|\d+\s+passed)\b", re.I),
-    "deploy": re.compile(r"\b(?:deployed|released|launched|live\s+at|rollout\s+(?:complete|successful))\b", re.I),
+    "deploy": re.compile(r"\b(?:deployed|released|launched|live|rollout\s+(?:complete|successful))\b", re.I),
     "push": re.compile(r"\b(?:pushed)\b", re.I),
     "merge": re.compile(r"\b(?:merged|merge\s+(?:complete|successful))\b", re.I),
     "ship": re.compile(r"\b(?:shipped|deployed|released|launched|live\s+at)\b", re.I),
@@ -152,6 +154,14 @@ SPECIFIC_SUCCESS = {
     "complete": re.compile(r"\b(?:completed|finished|done|sent|published|posted|saved|"
                             r"submitted|fixed|deployed|pushed|merged|shipped|scheduled|booked|"
                             r"filed|created|updated|launched|live\s+at)\b", re.I),
+}
+RECEIPT_OPERATIONS = {
+    "send": re.compile(r"\b(?:sent|delivered|delivery|emailed)\b", re.I),
+    "post": re.compile(r"\b(?:posted|published|publication)\b", re.I),
+    "deploy": re.compile(r"\b(?:deployed|deployment|released|launched|live)\b", re.I),
+    "push": re.compile(r"\b(?:pushed)\b", re.I),
+    "upload": re.compile(r"\b(?:uploaded|uploading|stored)\b", re.I),
+    "submit": re.compile(r"\b(?:submitted|submission|accepted)\b", re.I),
 }
 # An unqualified outcome such as 'permission denied' can be tied to the
 # requested operation. A line naming a different object cannot. This explicit
@@ -178,9 +188,13 @@ field fields parameter parameters argument arguments property properties
 ACTION_WORDS = OUTCOME_WORDS | set("""
 curl request requests http https method post put patch delete get x d data
 browser click button press select shell terminal command cmd tool action
+clicked clicking pressed pressing selected selecting type typed typing input
 send_email write_file write_text function arguments parameters execute
 complete finish publish submit deploy save run email form file service article
 git origin branch remote create mkdir touch ship book reserve edit modify schedule
+application app website site npm npx pnpm python python3 wrangler docker kubectl
+confirmation confirm dialog modal selector
+production staging environment
 """.split())
 NARRATION_PATH = re.compile(r"(?:^|\.)(?:agent_messages|messages|chat|transcript|"
                             r"screenshot_metadata)(?:\[|\.|$)", re.I)
@@ -434,6 +448,8 @@ def _confirmed_undo(line):
 
 def _success_line(path, line, category):
     observed = _receipt(path, line)
+    if not _compatible_receipt(category, line):
+        return False
     if SIMULATED.search(line) or re.search(r"\b(?:not|never|no)\s+(?:a\s+)?(?:success|"
                                          r"successful|completed|done|sent|saved|posted|published)\b", line, re.I):
         return False
@@ -463,6 +479,8 @@ def _success_line(path, line, category):
                     re.search(r"\b(?:fix|patch|repair)\b.{0,35}\b(?:applied|successful|successfully|succeeded)\b", line, re.I))
     if category in ("push", "ship", "complete") and GIT_REF_SUCCESS.search(line):
         return True
+    if category == "post" and re.search(r"\bcreated\b", line, re.I) and re.search(r"https?://\S+", line):
+        return True
     if SPECIFIC_SUCCESS[category].search(line):
         return True
     if PRELIMINARY.search(line):
@@ -479,14 +497,83 @@ def _target_matches(claim, text):
     return bool(claim.keywords) and claim.keywords <= keywords(text)
 
 
-def _generic_outcome(path, line):
+def _target_overlaps(claim, text):
+    return bool(claim.keywords & keywords(text))
+
+
+def _recipient_mismatch(claim, action_text):
+    """Shared object words do not make a different named recipient equivalent."""
+    wanted = re.search(r"\bto\s+([\w@.+-]+)", claim.target, re.I)
+    requested = re.search(r"\bto\s+([\w@.+-]+)", action_text, re.I)
+    return bool(wanted and requested and wanted.group(1).casefold() != requested.group(1).casefold())
+
+
+def _generic_action(actions):
+    """Ignore UI coordinates and channel routes, while retaining named objects."""
+    text = "\n".join(line for _, line in actions)
+    text = re.sub(r"(?<!\w)/(?:channels?|rooms?|messages?|api)/\S+", "", text, flags=re.I)
+    text = re.sub(r"\b(?:to|in|into|on)\s+#[\w-]+", "", text, flags=re.I)
+    words = {word for word in keywords(text) if not word.isdecimal()}
+    return not (words - ACTION_WORDS)
+
+
+def _push_branch_matches(claim, line):
+    update = GIT_REF_SUCCESS.search(line)
+    if not update:
+        return True
+    branch = re.sub(r"^refs/heads/", "", update.group("branch"))
+    target = re.sub(r"\brefs/heads/", "", claim.target)
+    # Branch punctuation is part of its identity: `feature/cairn-audit` must
+    # never be supported by an update merely to `cairn` or `cairn-audit`.
+    return bool(re.search(r"(?<![\w./-])" + re.escape(branch) + r"(?![\w./-])", target))
+
+
+def _compatible_receipt(category, line):
+    """A completion for another operation cannot become generic success."""
+    kinds = {name for name, pattern in RECEIPT_OPERATIONS.items() if pattern.search(line)}
+    if not kinds:
+        return True
+    if category == "complete":
+        return True
+    allowed = {category}
+    if category == "publish":
+        allowed.add("post")
+    if category in ("save", "create", "update"):
+        allowed.add("upload")  # Stored/written results also prove persistence.
+    if category == "file":
+        allowed.add("submit")
+    if category == "ship":
+        allowed.update(("deploy", "push"))
+    return bool(kinds & allowed)
+
+
+def _specific_receipt(path, line, category, allow_status=True):
+    """A receipt can identify the operation when action context is abbreviated."""
+    if category == "post" and re.search(r"\bcreated\b", line, re.I):
+        return bool(re.search(r"https?://\S+", line))
+    if category in ("push", "ship", "complete") and GIT_REF_SUCCESS.search(line):
+        return True
+    if SPECIFIC_SUCCESS[category].search(line):
+        return True
+    if category == "deploy" and allow_status:
+        status = HTTP_STATUS.search(_receipt(path, line)) or BARE_HTTP_STATUS.search(line)
+        return bool(status and 200 <= int(status.group(1)) < 300 and int(status.group(1)) != 202)
+    return False
+
+
+def _generic_outcome(path, line, category=None):
     # Field names like stdout do not identify task objects. Numeric status and
     # exit codes likewise do not introduce another target.
     # A deployment tool may return only its generated URL, with no repeated
     # task name. 'Live at' ties this URL to the operation, rather than naming a
     # second task object in a generic success sentence.
-    if re.fullmatch(r"Live\s+at\s+https?://\S+", line, re.I):
+    if GIT_REF_SUCCESS.search(line):
         return True
+    # Generated receipt URLs identify the result of the requested operation;
+    # they need not repeat the human name in the action or session goal. Strip
+    # them only from a compatible outcome, not arbitrary returned text.
+    if category is not None and (_success_line(path, line, category) or _failure_line(path, line)):
+        line = re.sub(r"https?://\S+", "", line)
     words = {word for word in keywords(line) if not word.isdecimal()}
     return not (words - OUTCOME_WORDS)
 
@@ -498,7 +585,7 @@ def _narrated_output(path, line):
 def _operation_is_read_or_echo(actions):
     for path, line in actions:
         leaf = path.split(".")[-1].lower()
-        if not path or leaf in ("command", "cmd", "action", "agent_action", "tool", "name", "method"):
+        if not path or leaf in ("command", "cmd", "action", "agent_action", "tool", "name", "method", "type"):
             normalized = line.replace("_", " ")
             if NON_OPERATION.search(normalized):
                 return True
@@ -515,7 +602,7 @@ def _operation_only_saves_draft(actions):
     drafts = False
     for path, line in actions:
         leaf = path.split(".")[-1].lower()
-        if not path or leaf in ("command", "cmd", "action", "agent_action", "tool", "name", "method"):
+        if not path or leaf in ("command", "cmd", "action", "agent_action", "tool", "name", "method", "type"):
             normalized = line.replace("_", " ")
             if re.match(r"^\s*(?:send|deliver|post|publish)\b", normalized, re.I):
                 return False
@@ -536,11 +623,10 @@ def _quote(path, line, original):
 def classify_claim(claim, candidates):
     """Check tied outcomes; failure wins inside a single turn.
 
-    Session goals only retrieve candidates. They can never prove the action,
-    target, or outcome. This function independently checks agent and time to
-    prevent a caller from accidentally supplying future or different-agent
-    evidence. A success after a failure resolves that failure. A failure after
-    success is ambiguous unless the success was explicitly undone.
+    An in-window action or same-agent session goal can identify the object of
+    a generic, verb-compatible tool receipt. The goal never proves an outcome.
+    This function independently rejects future and different-agent turns.
+    Conflicting outcome turns are reported as contradicted with both rows.
     """
     category = VERB_CATEGORY[claim.verb]
     claim_time = parse_timestamp(claim.time)
@@ -548,6 +634,7 @@ def classify_claim(claim, candidates):
         return Decision("not shown", reason="Claim timestamp is missing or invalid.")
     latest = None
     successful = None
+    failed = None
     for turn in candidates:
         time = parse_timestamp(turn.get("time"))
         if str(turn.get("agent")) != claim.agent or time is None or time >= claim_time:
@@ -557,9 +644,14 @@ def classify_claim(claim, candidates):
         action_text = "\n".join(line for _, line in actions)
         if not claim.keywords:
             continue
-        action_target = _target_matches(claim, action_text)
-        generic_action = not (keywords(action_text) - ACTION_WORDS)
-        if not action_target and not generic_action:
+        exact_action_target = _target_matches(claim, action_text)
+        in_window = turn.get("within_window", True)
+        action_target = exact_action_target or (in_window and _target_overlaps(claim, action_text))
+        generic_action = _generic_action(actions)
+        goal_target = bool(in_window and generic_action and _target_overlaps(claim, turn.get("session_goal", "")))
+        if not action_target and not goal_target and not generic_action:
+            continue
+        if _recipient_mismatch(claim, action_text):
             continue
         if _operation_is_read_or_echo(actions) or SIMULATED.search(action_text) or CLAIM_PATTERN.search(action_text):
             continue
@@ -567,21 +659,47 @@ def classify_claim(claim, candidates):
             continue
         undo = bool(UNDO.search(action_text))
         operation_text = re.sub(r"https?://\S+", "", action_text).replace("_", " ")
-        if not undo and not ACTION_PATTERNS[category].search(operation_text):
-            continue
+        operation_matches = bool(ACTION_PATTERNS[category].search(operation_text))
         # Output is required. An agent action such as 'publish X' describes a
         # request, and is never by itself a confirmation or a failure.
         usable = [(p, line) for p, line in outputs if not _narrated_output(p, line)]
+        if not undo and not operation_matches:
+            # A neutral UI command can return an explicit operation receipt,
+            # but an action naming another operation remains a different task.
+            if not goal_target:
+                continue
+            if any(pattern.search(operation_text) for name, pattern in ACTION_PATTERNS.items()
+                   if name != "complete"):
+                continue
+            if (ACTION_PATTERNS[category].search(str(turn.get("session_goal", ""))) is None
+                    and not any(_specific_receipt(p, line, category) for p, line in usable)):
+                continue
         targeted = [(p, line) for p, line in usable if _target_matches(claim, line)]
         if targeted:
             outcomes = [(p, line) for p, line in usable
-                        if _target_matches(claim, line) or _generic_outcome(p, line)]
-        elif action_target:
-            outcomes = [(p, line) for p, line in usable if _generic_outcome(p, line)]
+                        if _target_matches(claim, line) or _generic_outcome(p, line, category)]
+        elif action_target or goal_target:
+            outcomes = [(p, line) for p, line in usable if _generic_outcome(p, line, category)]
         else:
             continue
-        failures = [(p, line) for p, line in outcomes if _failure_line(p, line)]
+        failures = [(p, line) for p, line in outcomes
+                    if _failure_line(p, line) and _compatible_receipt(category, line)]
         successes = [(p, line) for p, line in outcomes if _success_line(p, line, category)]
+        incompatible = [(p, line) for p, line in usable
+                        if not _compatible_receipt(category, line)
+                        and (_target_matches(claim, line)
+                             or _generic_outcome(p, re.sub(r"https?://\S+", "", line))) ]
+        if incompatible:
+            # A 201 or `success: true` can acknowledge a different operation.
+            # Only an explicit receipt for this verb can resolve that context.
+            successes = [(p, line) for p, line in successes
+                         if _specific_receipt(p, line, category, allow_status=False)]
+        if not exact_action_target and not targeted:
+            # The broader association path needs a receipt for this verb,
+            # rather than treating any generic 'success' as completion.
+            successes = [(p, line) for p, line in successes if _specific_receipt(p, line, category)]
+        if category == "push":
+            successes = [(p, line) for p, line in successes if _push_branch_matches(claim, line)]
         if category in ("send", "post", "publish", "complete") and any(DRAFT.search(line) for _, line in usable):
             # A separate status field can acknowledge saving a draft. Require
             # an explicit delivery/publication receipt if a draft is present.
@@ -609,16 +727,20 @@ def classify_claim(claim, candidates):
         # Prefer a descriptive receipt over a status integer where both decide.
         path, line = max(lines, key=lambda pair: len(pair[1]))
         row_id = str(turn["row_id"])
-        explicit_undo = undo or bool(undo_receipts)
         decision = Decision(answer, _quote(path, line, turn.get("output")), (row_id,),
                             "Explicit outcome for the matching action and target.")
         if answer == "shown" and (successful is None or time > successful[0]):
             successful = (time, decision)
+        if answer == "contradicted" and (failed is None or time > failed[0]):
+            failed = (time, decision)
         if latest is None or time > latest[0] or (time == latest[0] and answer == "contradicted"):
-            latest = (time, decision, explicit_undo)
+            latest = (time, decision)
     if latest is None:
         return Decision("not shown")
-    if latest[1].answer == "contradicted" and successful and not latest[2]:
-        return Decision("not shown", reason="A success and a later failure refer to this target; "
-                        "the record does not establish whether the successful action was undone.")
+    if successful and failed:
+        success_row = successful[1].row_ids[0]
+        failure_row = failed[1].row_ids[0]
+        rows = tuple(item[1].row_ids[0] for item in sorted((successful, failed), key=lambda item: item[0]))
+        return Decision("contradicted", failed[1].deciding_line, rows,
+                        "Conflicting outcomes: success in " + success_row + "; failure in " + failure_row + ".")
     return latest[1]

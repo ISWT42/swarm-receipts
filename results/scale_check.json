@@ -4,7 +4,7 @@
     "Measures index building and one streamed query, not classification of one million claims.",
     "Peak RSS does not include kernel filesystem caches; the index uses disk space."
   ],
-  "measured_at_utc": "2026-10-03T08:38:27.505528+00:00",
+  "measured_at_utc": "2026-10-03T08:51:41.018155+00:00",
   "measurement": "Separate child process ru_maxrss; Linux KiB converted to MiB",
   "memory_ceiling_mib": 128,
   "passed": true,
@@ -12,7 +12,7 @@
   "python_version": "3.10.12",
   "runs": [
     {
-      "candidate_stream_seconds": 0.25,
+      "candidate_stream_seconds": 0.336,
       "checks": {
         "indexed_count_matches": true,
         "peak_rss_below_128_mib": true,
@@ -28,19 +28,19 @@
         "unassigned_turns": 0,
         "untimed_turns": 0
       },
-      "generation_seconds": 0.43,
-      "index_seconds": 3.382,
+      "generation_seconds": 0.498,
+      "index_seconds": 3.914,
       "indexed_turns": 100000,
-      "peak_rss_mib": 19.625,
+      "peak_rss_mib": 19.5,
       "representative_action_output_bytes": 165,
       "representative_record_bytes": 288,
       "requested_turns": 100000,
       "sqlite_index_bytes": 50360320,
       "streamed_candidate_turns": 100000,
-      "total_seconds": 4.066
+      "total_seconds": 4.753
     },
     {
-      "candidate_stream_seconds": 2.484,
+      "candidate_stream_seconds": 2.882,
       "checks": {
         "indexed_count_matches": true,
         "peak_rss_below_128_mib": true,
@@ -56,16 +56,16 @@
         "unassigned_turns": 0,
         "untimed_turns": 0
       },
-      "generation_seconds": 3.944,
-      "index_seconds": 34.903,
+      "generation_seconds": 4.163,
+      "index_seconds": 35.43,
       "indexed_turns": 1000000,
-      "peak_rss_mib": 19.5,
+      "peak_rss_mib": 19.625,
       "representative_action_output_bytes": 165,
       "representative_record_bytes": 288,
       "requested_turns": 1000000,
       "sqlite_index_bytes": 503701504,
       "streamed_candidate_turns": 1000000,
-      "total_seconds": 41.362
+      "total_seconds": 42.508
     }
   ]
 }

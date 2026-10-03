@@ -449,7 +449,8 @@ class TurnIndex:
         # Bound SQL placeholders even for unusually long claims. This limits only
         # additional session matching; all turns within the time window remain.
         keyword_list = sorted(keyword_set)[:100]
-        parameters: list[Any] = [identity, stamp, stamp - window_hours * 3600]
+        window_start = stamp - window_hours * 3600
+        parameters: list[Any] = [identity, stamp, window_start]
         session_clause = ""
         if keyword_list:
             placeholders = ",".join("?" for _ in keyword_list)
@@ -460,15 +461,21 @@ class TurnIndex:
             )"""
             parameters.extend(keyword_list)
         query = f"""
-            SELECT t.payload FROM turns t INDEXED BY turns_agent_time
+            SELECT t.payload, t.stamp, s.goal FROM turns t INDEXED BY turns_agent_time
+            LEFT JOIN sessions s ON s.session=t.session AND s.agent=t.agent
             WHERE t.agent=? AND t.stamp < ?
               AND (t.stamp >= ? {session_clause})
             ORDER BY t.stamp, t.sequence
         """
         cursor = self.connection.execute(query, parameters)
         try:
-            for (payload,) in cursor:
-                yield json.loads(payload)
+            for payload, turn_stamp, session_goal in cursor:
+                row = json.loads(payload)
+                # Attach context only from this turn's own agent/session. These
+                # derived fields never enter the persisted evidence payload.
+                row["session_goal"] = session_goal or ""
+                row["within_window"] = turn_stamp >= window_start
+                yield row
         finally:
             cursor.close()
 

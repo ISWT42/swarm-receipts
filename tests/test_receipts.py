@@ -209,11 +209,13 @@ class AdversarialTests(unittest.TestCase):
         self.assertIn("permission denied", row["deciding_line"])
         self.assertIn("computer_use_turns.jsonl.gz:2", row["row_ids"])
 
-    def test_failed_send_then_confirmed_retry_is_shown(self):
+    def test_failed_send_then_confirmed_retry_reports_conflict(self):
         turns = [make_turn(output="Send failed for invoice: permission denied.", time="2026-09-01T11:40:00Z"),
                  make_turn(output="Email sent successfully: invoice.")]
-        row = self.assert_answer("shown", turns)
-        self.assertIn("computer_use_turns.jsonl.gz:2", row["row_ids"])
+        row = self.assert_answer("contradicted", turns)
+        for row_id in ("computer_use_turns.jsonl.gz:1", "computer_use_turns.jsonl.gz:2"):
+            self.assertIn(row_id, row["row_ids"])
+            self.assertIn(row_id, row["reason"])
 
     def test_quoted_agent_transcript_in_tool_output_is_not_a_receipt(self):
         self.assert_answer("not shown", [make_turn(action="cat invoice-chat.txt", output='Aster said, "I sent the invoice email."')])
@@ -271,10 +273,13 @@ class AdversarialTests(unittest.TestCase):
     def test_first_person_contraction_is_a_claim(self):
         self.assert_answer("shown", [make_turn()], claim="I've sent the invoice email.")
 
-    def test_success_then_failed_resend_is_ambiguous(self):
+    def test_success_then_failed_resend_reports_conflict(self):
         turns = [make_turn(output="Email sent successfully: invoice.", time="2026-09-01T11:40:00Z"),
                  make_turn(output="Send failed for invoice: permission denied.")]
-        self.assert_answer("not shown", turns)
+        row = self.assert_answer("contradicted", turns)
+        for row_id in ("computer_use_turns.jsonl.gz:1", "computer_use_turns.jsonl.gz:2"):
+            self.assertIn(row_id, row["row_ids"])
+            self.assertIn(row_id, row["reason"])
 
     def test_failure_then_pending_retry_stays_contradicted(self):
         turns = [make_turn(output="Send failed for invoice: permission denied.", time="2026-09-01T11:40:00Z"),

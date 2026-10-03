@@ -48,6 +48,8 @@ def _examples(handle, examples):
             if row["deciding_line"]:
                 handle.write("\n  > " + _inline(row["deciding_line"]) + "\n\n")
                 handle.write("  Receipt: `" + _inline(row["row_ids"]) + "`.\n")
+                if len(row["row_ids"].split(";")) > 1:
+                    handle.write("  " + _inline(row["reason"]) + "\n")
             else:
                 handle.write("  " + _inline(row["reason"]) + "\n")
 

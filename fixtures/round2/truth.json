@@ -1,0 +1,329 @@
+{
+  "claims": [
+    {
+      "agent": "Aster",
+      "answer": "shown",
+      "claim_text": "Posted the aurora rehearsal notice.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:1",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:1"
+      ],
+      "row_id": "agent_memories.jsonl.gz:1"
+    },
+    {
+      "agent": "Birch",
+      "answer": "shown",
+      "claim_text": "I posted the moonrise briefing.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:2",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:2"
+      ],
+      "row_id": "chat_messages.jsonl.gz:1"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "shown",
+      "claim_text": "Deployed the sandpiper gallery.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:3",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:3"
+      ],
+      "row_id": "chat_messages.jsonl.gz:2"
+    },
+    {
+      "agent": "Aster",
+      "answer": "shown",
+      "claim_text": "The tidepool console is live now.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:4",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:4"
+      ],
+      "row_id": "chat_messages.jsonl.gz:3"
+    },
+    {
+      "agent": "Birch",
+      "answer": "shown",
+      "claim_text": "Pushed reedbed-release.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:5",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:5"
+      ],
+      "row_id": "chat_messages.jsonl.gz:4"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "shown",
+      "claim_text": "I've pushed estuary-hotfix.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:6",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:6"
+      ],
+      "row_id": "chat_messages.jsonl.gz:5"
+    },
+    {
+      "agent": "Aster",
+      "answer": "shown",
+      "claim_text": "Sent the petrel agenda.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:7",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:7"
+      ],
+      "row_id": "agent_memories.jsonl.gz:2"
+    },
+    {
+      "agent": "Birch",
+      "answer": "shown",
+      "claim_text": "The windmill digest is sent now.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:8",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:8"
+      ],
+      "row_id": "chat_messages.jsonl.gz:6"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "shown",
+      "claim_text": "Uploaded the starling drawings.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:9",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:9"
+      ],
+      "row_id": "chat_messages.jsonl.gz:7"
+    },
+    {
+      "agent": "Aster",
+      "answer": "shown",
+      "claim_text": "Submitted the shoreline application.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:10",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:10"
+      ],
+      "row_id": "chat_messages.jsonl.gz:8"
+    },
+    {
+      "agent": "Birch",
+      "answer": "contradicted",
+      "claim_text": "Posted the kingfisher advisory.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:11",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:11"
+      ],
+      "row_id": "chat_messages.jsonl.gz:9"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "contradicted",
+      "claim_text": "The mistbank portal is up now.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:12",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:12"
+      ],
+      "row_id": "chat_messages.jsonl.gz:10"
+    },
+    {
+      "agent": "Aster",
+      "answer": "contradicted",
+      "claim_text": "Pushed limestone-fix.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:13",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:13"
+      ],
+      "row_id": "agent_memories.jsonl.gz:3"
+    },
+    {
+      "agent": "Birch",
+      "answer": "contradicted",
+      "claim_text": "Emailed the rainfall digest.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:14",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:14"
+      ],
+      "row_id": "chat_messages.jsonl.gz:11"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "contradicted",
+      "claim_text": "Uploaded the firecrest sketches.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:15",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:15"
+      ],
+      "row_id": "chat_messages.jsonl.gz:12"
+    },
+    {
+      "agent": "Aster",
+      "answer": "contradicted",
+      "claim_text": "I submitted the hayfield request.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:16",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:16"
+      ],
+      "row_id": "chat_messages.jsonl.gz:13"
+    },
+    {
+      "agent": "Birch",
+      "answer": "contradicted",
+      "claim_text": "Posted the puffin itinerary.",
+      "conflict": true,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:18",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:17",
+        "computer_use_turns.jsonl.gz:18"
+      ],
+      "row_id": "chat_messages.jsonl.gz:14"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "contradicted",
+      "claim_text": "Launched the cloudbank dashboard.",
+      "conflict": true,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:20",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:19",
+        "computer_use_turns.jsonl.gz:20"
+      ],
+      "row_id": "chat_messages.jsonl.gz:15"
+    },
+    {
+      "agent": "Aster",
+      "answer": "contradicted",
+      "claim_text": "The alderside bulletin is sent now.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:21",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:21"
+      ],
+      "row_id": "agent_memories.jsonl.gz:4"
+    },
+    {
+      "agent": "Birch",
+      "answer": "contradicted",
+      "claim_text": "Uploaded the marshland packet.",
+      "conflict": false,
+      "deciding_row_id": "computer_use_turns.jsonl.gz:22",
+      "deciding_row_ids": [
+        "computer_use_turns.jsonl.gz:22"
+      ],
+      "row_id": "chat_messages.jsonl.gz:16"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "not shown",
+      "claim_text": "Posted the saltmarsh update.",
+      "conflict": false,
+      "deciding_row_id": null,
+      "deciding_row_ids": [],
+      "row_id": "chat_messages.jsonl.gz:17"
+    },
+    {
+      "agent": "Aster",
+      "answer": "not shown",
+      "claim_text": "Deployed the beachgrass catalog.",
+      "conflict": false,
+      "deciding_row_id": null,
+      "deciding_row_ids": [],
+      "row_id": "chat_messages.jsonl.gz:18"
+    },
+    {
+      "agent": "Birch",
+      "answer": "not shown",
+      "claim_text": "Submitted the larkspur nomination.",
+      "conflict": false,
+      "deciding_row_id": null,
+      "deciding_row_ids": [],
+      "row_id": "chat_messages.jsonl.gz:19"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "not shown",
+      "claim_text": "Emailed the silverleaf circular.",
+      "conflict": false,
+      "deciding_row_id": null,
+      "deciding_row_ids": [],
+      "row_id": "chat_messages.jsonl.gz:20"
+    },
+    {
+      "agent": "Aster",
+      "answer": "not shown",
+      "claim_text": "Sent the redwing digest.",
+      "conflict": false,
+      "deciding_row_id": null,
+      "deciding_row_ids": [],
+      "row_id": "agent_memories.jsonl.gz:5"
+    },
+    {
+      "agent": "Birch",
+      "answer": "not shown",
+      "claim_text": "Pushed driftwood-release.",
+      "conflict": false,
+      "deciding_row_id": null,
+      "deciding_row_ids": [],
+      "row_id": "chat_messages.jsonl.gz:21"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "not shown",
+      "claim_text": "Posted the grebe bulletin.",
+      "conflict": false,
+      "deciding_row_id": null,
+      "deciding_row_ids": [],
+      "row_id": "chat_messages.jsonl.gz:22"
+    },
+    {
+      "agent": "Aster",
+      "answer": "not shown",
+      "claim_text": "The dunegrass viewer is live.",
+      "conflict": false,
+      "deciding_row_id": null,
+      "deciding_row_ids": [],
+      "row_id": "chat_messages.jsonl.gz:23"
+    },
+    {
+      "agent": "Birch",
+      "answer": "not shown",
+      "claim_text": "Emailed the wigeon agenda to Mira.",
+      "conflict": false,
+      "deciding_row_id": null,
+      "deciding_row_ids": [],
+      "row_id": "chat_messages.jsonl.gz:24"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "not shown",
+      "claim_text": "Uploaded the searocket bundle.",
+      "conflict": false,
+      "deciding_row_id": null,
+      "deciding_row_ids": [],
+      "row_id": "chat_messages.jsonl.gz:25"
+    }
+  ],
+  "counts": {
+    "contradicted": 10,
+    "not shown": 10,
+    "shown": 10
+  },
+  "description": "Fresh round 2 generic receipts linked by action or same-agent session goal; truth is not evidence.",
+  "nonclaim_count": 6,
+  "record_counts": {
+    "agent_memories": 5,
+    "chat_messages": 31,
+    "computer_use_sessions": 30,
+    "computer_use_turns": 32
+  }
+}
