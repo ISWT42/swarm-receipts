@@ -3,7 +3,7 @@
 An offline command-line checker for completion claims made by agents in a group.
 It extracts claims from chat messages and memories, then checks the same agent's
 computer-use actions and tool outputs for receipts. It uses Python 3's standard
-library, with transparent text rules and no model or network calls.
+library, with transparent text rules and no model or network calls by default.
 
 Every claim gets one of three answers:
 
@@ -14,6 +14,33 @@ Every claim gets one of three answers:
 The third answer matters: an absent receipt does not prove a claim false. An
 agent's own narration or later messages do not count as receipts. Shown and
 contradicted answers include the deciding line and its source row.
+
+## Two readers (v3)
+
+Claim extraction, the turn index and candidate retrieval are shared. The
+reading differs:
+
+- `--reader rule` (the default) is v2's rule reader, unchanged: the same
+  answers and the same files, byte for byte.
+- `--reader model` lets a local language model read each claim's candidate
+  turns. It must name one turn and copy the line of that turn's output that
+  settles the claim. A shown or contradicted answer stands only if that quote
+  is verbatim in the output the model was shown; otherwise the answer is not
+  shown, with the reason recorded. A fail-closed safety net also refuses a
+  shown answer whose quote reports a failure. See `V3-CHANGES.md`.
+
+```sh
+python swarm_receipts.py --data DIR --out OUT --reader model --backend ollama --model qwen3.5:9b
+```
+
+The model reader talks only to an Ollama server on this machine
+(`http://localhost:11434` by default), never downloads a model, and records
+the model name and its Ollama digest in `run_info.json`, `summary.md` and
+`memory_check.md`. It also writes `reader_log.jsonl` (ids, counts, hashes and
+timings per claim, no record text). `--resume` continues an interrupted run
+from its cached replies. `--index FILE` reuses a turn index that
+`TurnIndex.build()` wrote earlier; it is opened read-only and never deleted.
+`--backend mock` is a deterministic stand-in for tests.
 
 ## Run on the synthetic fixture
 
@@ -202,8 +229,8 @@ missing receipts may be missed. A relevant receipt demonstrates the recorded
 outcome; it does not establish that a service remained available or that an
 artifact was correct. Real-data accuracy has not been measured.
 
-The code was written with AI assistance (Sol, GPT-6.1 in Codex) under Joshua
-Bauer's direction.
+The code was written with AI assistance (Sol, GPT-6.1 in Codex, for v1 and v2;
+Claude for v3's model reader) under Joshua Bauer's direction.
 
 ## Doubts considered and dismissed
 
