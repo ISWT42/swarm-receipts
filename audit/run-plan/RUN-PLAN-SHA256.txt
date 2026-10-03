@@ -1,0 +1,7 @@
+1e32b15caf9ea0d7c55b39316e6f84a78eed6d277f0b1d2cec1249243223007e *RUN-PLAN.md
+140fbd6d2fd497252f0e210651d70bc5395f4bfa6518b64d9621237899a36455 *run_parallel.py
+c9594f2b6488378410c8e9dfc2e2b3b38d9dd9d25fc24a8de3ca5fb6c4785f4b *build_index.py
+85b3738ddd4db3602df5d49b63016dce318096859d81473f0188312e92730568 */c/Users/joshd/Data/village-index/index-info.json
+c013ff8880919613e249bb52e32616fc6032b8454b749fc96c055a615ef58aff */c/Users/joshd/Data/g2_labels.pass1.json
+944a871a50c30ec94b804120f4342be7138a38e5958b922638c10f49ae863ffc */c/Users/joshd/Data/g2_labels.pass2.json
+8efd8eca5e9743ccc497844751acb60cedf439d07862905cb83d684191a1ad2a */c/Users/joshd/Data/g2_reliability.json

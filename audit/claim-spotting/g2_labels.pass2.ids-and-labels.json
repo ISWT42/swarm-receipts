@@ -1,0 +1,807 @@
+{
+ "labelled_by": "Claude Sonnet (independent second pass, blind to the first pass and to any tool output)",
+ "rule": "1 = the agent asserts that it (or a 'we' that includes it) successfully did or finished something, or that its own deliverable is done, live, sent, posted, fixed, merged, verified or complete; includes sub-steps with a positive outcome and verification reports with receipts.\n0 = plans, waiting, questions, future or progressive narration, failure-only reports, praise or reports about other agents' work, creative text, trivial cognitive acts (read, see, think).\n\nA message counts as 1 if it contains at least one such assertion anywhere in it, even if the rest of the message is plans or questions.",
+ "note": "Derived copy for publication: the second labeller's short reasons are removed because they paraphrase message content.",
+ "labels": [
+  {
+   "id": "0ad3db8d-9cca-4bb3-a0e0-376b9cd8f2e0",
+   "claim": 1
+  },
+  {
+   "id": "eb9e520f-730c-40fb-aa58-8dd5a29be449",
+   "claim": 1
+  },
+  {
+   "id": "01e3aa5e-367d-44a6-a372-62dcd25e7919",
+   "claim": 1
+  },
+  {
+   "id": "8331aa8c-6629-454b-bf3a-8c41b78438f1",
+   "claim": 1
+  },
+  {
+   "id": "37846b90-45af-4d80-98d3-56925afb73cb",
+   "claim": 0
+  },
+  {
+   "id": "c0699330-09a0-4c7e-adb3-9b58d460818a",
+   "claim": 0
+  },
+  {
+   "id": "6f90b54b-3366-4c8a-8dba-7070282ab4f3",
+   "claim": 1
+  },
+  {
+   "id": "caf09277-cdba-4a26-a868-c9dd8e7f9f71",
+   "claim": 0
+  },
+  {
+   "id": "294dc78d-20cc-4e12-92a6-f10e14ca89ac",
+   "claim": 1
+  },
+  {
+   "id": "efc61ebf-2a93-4583-9aeb-202ce6d83b37",
+   "claim": 0
+  },
+  {
+   "id": "95e072d8-bfe4-4b6e-b0e0-20af8f2bd463",
+   "claim": 1
+  },
+  {
+   "id": "c7b6d4b1-42cd-43a2-8465-5c75e24ba05a",
+   "claim": 0
+  },
+  {
+   "id": "734f743e-43ad-4d6c-a762-f304d3f83468",
+   "claim": 0
+  },
+  {
+   "id": "139225b0-5994-4f88-ac4c-d9c6c13b2095",
+   "claim": 0
+  },
+  {
+   "id": "070ffb8a-c659-44e6-9656-901982ab6b41",
+   "claim": 0
+  },
+  {
+   "id": "b7e9c38b-9e33-489a-afd4-6f6727129c2a",
+   "claim": 0
+  },
+  {
+   "id": "91e02907-df93-454d-ac2b-c24bee0e9c2c",
+   "claim": 1
+  },
+  {
+   "id": "30064410-ed8f-4386-983a-7dfd41afb308",
+   "claim": 1
+  },
+  {
+   "id": "f51648ab-fed3-49f4-ad98-b0a8b81a6f3d",
+   "claim": 0
+  },
+  {
+   "id": "311f9a58-ff22-4e9f-b64c-fe557a0447b8",
+   "claim": 1
+  },
+  {
+   "id": "ef8b9fa2-3c51-441b-a30c-0442e71eb359",
+   "claim": 0
+  },
+  {
+   "id": "c5f9a9d6-2af7-427b-8874-5a88e33fe677",
+   "claim": 1
+  },
+  {
+   "id": "15dc1d5b-1d7c-4674-9bb4-3f521eee4033",
+   "claim": 0
+  },
+  {
+   "id": "57245a38-7967-4dbd-a755-33c2eb729e7a",
+   "claim": 1
+  },
+  {
+   "id": "d918c1cb-94e6-442b-b4b9-21279ecb2c72",
+   "claim": 1
+  },
+  {
+   "id": "bdc284c0-f4d8-4939-a5b8-4c0725fe4a39",
+   "claim": 0
+  },
+  {
+   "id": "37a65d29-44b2-4cf6-b037-92eb20be96e9",
+   "claim": 1
+  },
+  {
+   "id": "5960a62d-eb05-4d39-b0d4-2ff75f0446d0",
+   "claim": 0
+  },
+  {
+   "id": "758f02e4-e87c-40aa-8004-609e7011120c",
+   "claim": 1
+  },
+  {
+   "id": "83d81bec-7421-4a0c-88ce-781d2771307a",
+   "claim": 1
+  },
+  {
+   "id": "f9488d57-773e-4545-b675-541a6fd89f29",
+   "claim": 1
+  },
+  {
+   "id": "80cad8c7-f389-48c3-9f31-76e591ae82ff",
+   "claim": 0
+  },
+  {
+   "id": "0dbc6056-eb8c-43f2-b33a-208f978d93f3",
+   "claim": 0
+  },
+  {
+   "id": "61847fe0-7809-4201-b591-ff65c63cc9fa",
+   "claim": 1
+  },
+  {
+   "id": "47289c41-4dd7-440a-b163-4e74a57d26ee",
+   "claim": 1
+  },
+  {
+   "id": "c4ee3811-b696-4aec-b8ba-c6050d2e77ea",
+   "claim": 1
+  },
+  {
+   "id": "0ee73d0f-46ce-4bb4-8f8f-01a84406ec40",
+   "claim": 1
+  },
+  {
+   "id": "7bcf8e62-de60-42f1-aec9-3f7851eac0fa",
+   "claim": 1
+  },
+  {
+   "id": "aeb0f6d5-ce41-412e-b08e-9a7327b52354",
+   "claim": 1
+  },
+  {
+   "id": "8b586784-ef71-4c54-be17-fdfa82430344",
+   "claim": 1
+  },
+  {
+   "id": "0c17ad46-58aa-4d2e-86c5-cf5c2edf4b5a",
+   "claim": 1
+  },
+  {
+   "id": "49a8fd96-b600-44a3-b0b5-caf50fc7b5f9",
+   "claim": 1
+  },
+  {
+   "id": "20f656f2-a1bd-4a6d-83f8-0498ee80e1ba",
+   "claim": 0
+  },
+  {
+   "id": "7d37c95e-4e31-4ff4-b10c-bbc1cc34c8bf",
+   "claim": 1
+  },
+  {
+   "id": "e423616c-27c1-43cd-9786-c4442acf8aa7",
+   "claim": 0
+  },
+  {
+   "id": "7018a4e7-df18-4b41-bab3-0f9c98945efd",
+   "claim": 0
+  },
+  {
+   "id": "7478a291-9f4d-403e-b142-af6de4fe3fc6",
+   "claim": 1
+  },
+  {
+   "id": "b1646e9b-cabd-4341-adda-190e328d05d7",
+   "claim": 0
+  },
+  {
+   "id": "5337d435-f182-47bb-9fd0-5d385688b54d",
+   "claim": 0
+  },
+  {
+   "id": "307df464-bc0b-4898-b404-967571261f75",
+   "claim": 0
+  },
+  {
+   "id": "c87eefbe-a9e2-485a-a0db-edddc1ec4ae9",
+   "claim": 0
+  },
+  {
+   "id": "794a2ccc-6d04-448f-acf4-cea74fdd4952",
+   "claim": 1
+  },
+  {
+   "id": "9d39771d-9e92-430a-98b4-b1db4c0630fa",
+   "claim": 1
+  },
+  {
+   "id": "ff63a2de-6dd0-478d-af76-090f167d1713",
+   "claim": 0
+  },
+  {
+   "id": "38c60e6b-69f4-4125-8fa1-896d727b9a31",
+   "claim": 1
+  },
+  {
+   "id": "7742dde5-9e87-47bc-b8ba-0f7cbb377532",
+   "claim": 1
+  },
+  {
+   "id": "c811cb9d-66ec-496e-9cb2-2588e5cf3f7c",
+   "claim": 1
+  },
+  {
+   "id": "4ca923ea-651a-4614-8c99-d28f0fb26ee1",
+   "claim": 0
+  },
+  {
+   "id": "78e119e0-8986-48a3-b6c3-72efcb89c207",
+   "claim": 1
+  },
+  {
+   "id": "6030b562-7f33-453e-a819-9cbcbeb26146",
+   "claim": 1
+  },
+  {
+   "id": "46d11aff-c1cc-4829-bdf2-413e737a8fb6",
+   "claim": 0
+  },
+  {
+   "id": "2e66d615-8d4a-4bef-a904-4ab68fa46b9a",
+   "claim": 1
+  },
+  {
+   "id": "c89a3a81-15c7-4d0b-9476-5d62f74c1424",
+   "claim": 0
+  },
+  {
+   "id": "d2d1684e-1d4f-4001-90df-011ce8f7974c",
+   "claim": 1
+  },
+  {
+   "id": "0eb851b1-2690-47dd-8459-812f0b70f263",
+   "claim": 1
+  },
+  {
+   "id": "d3be4990-3a47-4ff4-b6e1-f023200ceb2a",
+   "claim": 1
+  },
+  {
+   "id": "1e666ae0-667f-4d13-9d82-8a05273c57ff",
+   "claim": 0
+  },
+  {
+   "id": "c672b430-97ea-4b0e-bd3f-e180057e72e6",
+   "claim": 1
+  },
+  {
+   "id": "448be6bc-c9b8-45b1-9cb2-acc5bbb118b4",
+   "claim": 0
+  },
+  {
+   "id": "a413eb10-0a20-4ebb-bd7d-481a54271b2a",
+   "claim": 1
+  },
+  {
+   "id": "033e3dce-f422-4554-a6eb-849c5ae24831",
+   "claim": 0
+  },
+  {
+   "id": "770cf4c3-831f-4dd6-83a6-ecf78dd3e432",
+   "claim": 1
+  },
+  {
+   "id": "0be69953-6d41-4eec-9c5e-a4190e1863d4",
+   "claim": 0
+  },
+  {
+   "id": "575ad861-311a-4513-a453-ecf63b241891",
+   "claim": 0
+  },
+  {
+   "id": "5cb34600-2ecd-40b8-a84c-4803d5edbcf4",
+   "claim": 1
+  },
+  {
+   "id": "d51536ec-b35d-4c5d-bfa8-72fcb605dca1",
+   "claim": 0
+  },
+  {
+   "id": "236c2d6d-8ff9-47e1-bc7d-cabd65dfecc6",
+   "claim": 1
+  },
+  {
+   "id": "fad18acd-c856-4e96-9e7e-e6014be7ce98",
+   "claim": 1
+  },
+  {
+   "id": "c14116b1-f0d7-4bcb-a80c-8465f8eb5d71",
+   "claim": 1
+  },
+  {
+   "id": "0fe6aec4-2174-44cc-8e37-ec34af8e98c8",
+   "claim": 0
+  },
+  {
+   "id": "9f861fe4-ecd3-4480-8541-f3872be668cc",
+   "claim": 0
+  },
+  {
+   "id": "bed199e9-c6e6-442e-b583-3637a74bd4d7",
+   "claim": 1
+  },
+  {
+   "id": "c1a55a89-39c5-44cb-8933-c9ef65a3d5e5",
+   "claim": 1
+  },
+  {
+   "id": "c94eeb87-cdc6-41e4-93ba-f284ccd5747c",
+   "claim": 0
+  },
+  {
+   "id": "5efd0fbe-424c-4d9a-850d-9f1d211035d1",
+   "claim": 0
+  },
+  {
+   "id": "cccd030e-c23e-410a-ae51-863e2502c2ae",
+   "claim": 1
+  },
+  {
+   "id": "80172931-7d27-40a7-b0ad-1617cba25f63",
+   "claim": 1
+  },
+  {
+   "id": "e3c4ab33-6016-4ce3-ba75-deb7c3d6883e",
+   "claim": 0
+  },
+  {
+   "id": "a2f3bf6e-3361-40f5-a245-d24d2d6c3aee",
+   "claim": 1
+  },
+  {
+   "id": "64410269-0b47-4f16-99b6-0b9ad21b03ab",
+   "claim": 1
+  },
+  {
+   "id": "243afcad-9e1d-4ba8-9e8e-71ccef876083",
+   "claim": 1
+  },
+  {
+   "id": "42aadb17-23d1-477a-90df-64fece1ec204",
+   "claim": 0
+  },
+  {
+   "id": "0680948b-9a3c-4a2a-aa57-5a6e07004924",
+   "claim": 1
+  },
+  {
+   "id": "7df12aa9-5b68-41a2-bb27-1c081d7cec61",
+   "claim": 0
+  },
+  {
+   "id": "12ffd99c-0775-4500-b62e-e94d779d7bd4",
+   "claim": 0
+  },
+  {
+   "id": "f1defff2-71d6-4f75-8cbe-bdd7a1316bf0",
+   "claim": 1
+  },
+  {
+   "id": "571b1692-e2a5-4515-ab17-25e39bf71bad",
+   "claim": 1
+  },
+  {
+   "id": "c0946aab-ba94-42fe-a98f-272213bac012",
+   "claim": 0
+  },
+  {
+   "id": "4e0b2492-c77f-4dcf-a0fa-a039447f3b83",
+   "claim": 1
+  },
+  {
+   "id": "a1453b2c-e474-47fb-978b-34345e1cff22",
+   "claim": 0
+  },
+  {
+   "id": "5f0e4505-2315-42cc-8a9a-727d56c76fc1",
+   "claim": 0
+  },
+  {
+   "id": "474a5acf-e528-40e9-a8b6-2a00218a220e",
+   "claim": 1
+  },
+  {
+   "id": "abc53ac5-860c-41f1-909e-54ac4752727b",
+   "claim": 1
+  },
+  {
+   "id": "bdbd0bff-d0e7-4c9e-9816-f142f5c0eaa3",
+   "claim": 1
+  },
+  {
+   "id": "282bdb9b-d665-4eb1-ac92-ff6b37784183",
+   "claim": 1
+  },
+  {
+   "id": "64d56eb5-20a2-4fee-832a-d8ea9a364341",
+   "claim": 1
+  },
+  {
+   "id": "06576c92-64ce-4035-8c9a-62883eb24b7b",
+   "claim": 1
+  },
+  {
+   "id": "a2d6f0d8-2fa0-46ff-ae4c-80c1df10b596",
+   "claim": 0
+  },
+  {
+   "id": "c32bf23e-00b6-4505-bc29-c37f1ea7cd2a",
+   "claim": 1
+  },
+  {
+   "id": "ced3f55d-cead-43c1-9a59-07e776d5b807",
+   "claim": 1
+  },
+  {
+   "id": "1c46f011-dadb-4249-9551-10c6e14c036b",
+   "claim": 0
+  },
+  {
+   "id": "31d9ca66-8170-4ded-b86e-a5a9533c329c",
+   "claim": 0
+  },
+  {
+   "id": "4875a071-2679-4ddb-bc1b-773947427926",
+   "claim": 1
+  },
+  {
+   "id": "211f38cc-8185-43bb-91ff-34ca9c7e48ef",
+   "claim": 0
+  },
+  {
+   "id": "ca4e6e4f-edb5-4365-824c-66b26ebd89a7",
+   "claim": 1
+  },
+  {
+   "id": "97ee4ce7-5344-4e3a-9474-ad9161eccfc5",
+   "claim": 1
+  },
+  {
+   "id": "bdb9fbed-4f22-4923-9533-8a23ef4e5765",
+   "claim": 0
+  },
+  {
+   "id": "4d413a38-5625-4d2b-ba71-33a84757985a",
+   "claim": 1
+  },
+  {
+   "id": "151c578d-04da-45ea-b7e6-f0b86257fbe5",
+   "claim": 1
+  },
+  {
+   "id": "ffef2f5f-f6b1-4c15-9fa7-4291bdc35eb0",
+   "claim": 0
+  },
+  {
+   "id": "5e3aacc2-9c74-418f-a428-1f3283843879",
+   "claim": 1
+  },
+  {
+   "id": "fa8eb137-af6f-40e1-8bc2-cb8ed623b310",
+   "claim": 0
+  },
+  {
+   "id": "f81cbd13-6902-4979-ac95-2f64abfc975d",
+   "claim": 1
+  },
+  {
+   "id": "803996fd-716a-4d68-bdfc-a845e2aaf911",
+   "claim": 1
+  },
+  {
+   "id": "fe201b2c-aadc-4e5b-a0b9-d70f214f7d64",
+   "claim": 0
+  },
+  {
+   "id": "883a4652-d697-46c1-a5c4-38bd838d3072",
+   "claim": 0
+  },
+  {
+   "id": "5c0432f4-9785-4cc3-abcf-0cc964efcfb4",
+   "claim": 1
+  },
+  {
+   "id": "4e6cc6e5-8783-41d3-ac79-d3e252c9b74e",
+   "claim": 1
+  },
+  {
+   "id": "476bc0d6-2155-4200-8b17-17139412cc6e",
+   "claim": 1
+  },
+  {
+   "id": "7d0ceba3-920c-4a9d-b96d-44dbf1cec066",
+   "claim": 1
+  },
+  {
+   "id": "6e41b7e5-6db2-40dc-84e7-96f89095a48c",
+   "claim": 0
+  },
+  {
+   "id": "35ca7df4-3b33-4334-b69f-d4cbe3e32705",
+   "claim": 1
+  },
+  {
+   "id": "7a301078-38d2-42e2-8b1f-82d50b52cb3c",
+   "claim": 0
+  },
+  {
+   "id": "37f6159d-3d52-4300-9062-62a3c09ec154",
+   "claim": 0
+  },
+  {
+   "id": "243a64c6-afc6-445d-9e12-911a1a27fa1a",
+   "claim": 1
+  },
+  {
+   "id": "bf1467ea-8b89-4432-8824-08c6eabbe7ac",
+   "claim": 0
+  },
+  {
+   "id": "0912e0bf-3961-4553-91b3-271e76dcebef",
+   "claim": 1
+  },
+  {
+   "id": "850b5b90-1536-42da-893e-d4b2c772db65",
+   "claim": 1
+  },
+  {
+   "id": "5042f6e6-ffd0-43e7-b348-7d1384b56b5c",
+   "claim": 0
+  },
+  {
+   "id": "03d62b8e-82cb-472f-ad26-6bc819e1ba23",
+   "claim": 1
+  },
+  {
+   "id": "e0f8f7af-2f39-40ad-bb3d-7ec17b71d2bf",
+   "claim": 0
+  },
+  {
+   "id": "7a8a5d76-f7e1-4631-ac57-cf1f3cd5b26b",
+   "claim": 1
+  },
+  {
+   "id": "0b672689-a944-4b4c-ae9e-aed9503ac733",
+   "claim": 1
+  },
+  {
+   "id": "51e51758-0871-44a3-aa7f-99a1ee7eba97",
+   "claim": 0
+  },
+  {
+   "id": "b434f8d4-8128-4d07-9492-889e5b90b992",
+   "claim": 0
+  },
+  {
+   "id": "58d11b4d-e77b-4e15-8d6e-478e78b56bf5",
+   "claim": 0
+  },
+  {
+   "id": "128f882b-1f0a-4a56-87eb-e06da985c3af",
+   "claim": 0
+  },
+  {
+   "id": "1f487ff9-a91b-4bdf-881f-53de20b53e9c",
+   "claim": 0
+  },
+  {
+   "id": "fb952df5-10d1-4e7b-89e3-8840555cfc3d",
+   "claim": 0
+  },
+  {
+   "id": "7698e3d2-f743-43a3-a1eb-06bea9fd7e02",
+   "claim": 0
+  },
+  {
+   "id": "582dd1a2-ebde-48ba-9aa4-b8e62100349e",
+   "claim": 0
+  },
+  {
+   "id": "c9198295-a5b7-49b9-be9d-8e6ef65498c1",
+   "claim": 1
+  },
+  {
+   "id": "36199a77-8864-473e-9ac3-77f9b388631e",
+   "claim": 0
+  },
+  {
+   "id": "25f2a4a9-7fa0-45ba-bb69-e06e9ee013fd",
+   "claim": 0
+  },
+  {
+   "id": "0288d850-4791-412a-b53f-7d95a32eabc3",
+   "claim": 0
+  },
+  {
+   "id": "d34b4018-6954-49cb-a4eb-737355056f49",
+   "claim": 0
+  },
+  {
+   "id": "93c3be00-ed8b-43aa-9890-d4b61c6d3f6b",
+   "claim": 1
+  },
+  {
+   "id": "ad88a9db-3c8d-4250-b54d-7ccacad3cff6",
+   "claim": 0
+  },
+  {
+   "id": "55463bd1-72a3-49bd-8284-35c5c3cecb25",
+   "claim": 0
+  },
+  {
+   "id": "989b0d9f-af37-4411-84c6-1ab69e31d7d5",
+   "claim": 1
+  },
+  {
+   "id": "c0f9ba0b-404c-4fb0-899e-bd023ad03aa0",
+   "claim": 1
+  },
+  {
+   "id": "bf661226-aa4b-4edf-b302-54b96de54727",
+   "claim": 1
+  },
+  {
+   "id": "55073964-b427-47af-8a9a-354bcc58ee6d",
+   "claim": 1
+  },
+  {
+   "id": "d74b5608-9b55-4c2c-a6a5-a905a2fbd1dd",
+   "claim": 1
+  },
+  {
+   "id": "911e7845-5e0d-4214-b6a0-3168cfbd83e5",
+   "claim": 0
+  },
+  {
+   "id": "03994271-494c-4864-a812-47bfb05b88b5",
+   "claim": 0
+  },
+  {
+   "id": "e4198245-7cd1-42b2-83e4-0d9cecc21cd8",
+   "claim": 1
+  },
+  {
+   "id": "2b514eb9-52e1-49d8-b95c-06f34d0d74a3",
+   "claim": 1
+  },
+  {
+   "id": "997be073-33c3-4d9a-a0aa-436ff7bd73d8",
+   "claim": 1
+  },
+  {
+   "id": "f26b76dc-5131-46a8-8cb8-a7e1f3b49499",
+   "claim": 1
+  },
+  {
+   "id": "8d5c029f-760a-4302-8513-9eae2567e360",
+   "claim": 0
+  },
+  {
+   "id": "bbb172af-da34-4d89-b02c-7fcd3a610950",
+   "claim": 1
+  },
+  {
+   "id": "f404be50-9b25-4fa8-b04d-afe6beb703a9",
+   "claim": 0
+  },
+  {
+   "id": "b85c1263-0447-465f-bfe7-7d31845ca145",
+   "claim": 0
+  },
+  {
+   "id": "855fcfad-bf80-453f-b802-64630e7d5686",
+   "claim": 0
+  },
+  {
+   "id": "41810ce6-662a-48c8-a03a-574263295518",
+   "claim": 0
+  },
+  {
+   "id": "a23d3ca3-c543-413a-8f28-94eaeb0c1e1a",
+   "claim": 0
+  },
+  {
+   "id": "8f4bbeb1-80c7-4ee5-9a24-eceaa8a2caca",
+   "claim": 0
+  },
+  {
+   "id": "68a55430-1157-472a-af1f-6a5491c4f9ee",
+   "claim": 0
+  },
+  {
+   "id": "1761538b-3bfd-410b-93bf-973600282e42",
+   "claim": 1
+  },
+  {
+   "id": "c8a9152f-a378-48a1-8fd8-c57622f4e864",
+   "claim": 1
+  },
+  {
+   "id": "b1635880-7ed2-49ee-b25b-6f8c9e39f30f",
+   "claim": 0
+  },
+  {
+   "id": "96248c9b-b412-49ea-9681-49be4e73d3ce",
+   "claim": 1
+  },
+  {
+   "id": "770bd76f-5f89-4337-abad-cd5d0b91e979",
+   "claim": 1
+  },
+  {
+   "id": "a9026f7b-dfbd-49a4-829d-fd4212832c3f",
+   "claim": 1
+  },
+  {
+   "id": "4050590b-1285-4776-9b0f-cf314675a657",
+   "claim": 1
+  },
+  {
+   "id": "92262a27-ba71-4cad-a229-3ac4e83b4ca3",
+   "claim": 1
+  },
+  {
+   "id": "e977bf26-6b35-4969-8eaa-58f2cd7f6d0a",
+   "claim": 1
+  },
+  {
+   "id": "ed783e30-ce99-4d8f-97fa-40366ee1fefc",
+   "claim": 0
+  },
+  {
+   "id": "6c5d909c-ab55-4367-85db-21d6ae69c510",
+   "claim": 0
+  },
+  {
+   "id": "aa4fe74d-944a-4a98-aab3-51d1b94733a5",
+   "claim": 1
+  },
+  {
+   "id": "a8f8c74a-d996-4d3c-a888-a57ab544468a",
+   "claim": 0
+  },
+  {
+   "id": "17c3f6fa-2fd0-4cb4-9b7d-5bd6b8c68cd1",
+   "claim": 0
+  },
+  {
+   "id": "305427ae-adf9-4a24-a4c2-fc82afd59004",
+   "claim": 0
+  },
+  {
+   "id": "14075267-7f4f-41b5-8a36-9e99a262ee7a",
+   "claim": 0
+  },
+  {
+   "id": "99b87c1d-7ae1-47d5-9f8c-8a6d0d8d87ac",
+   "claim": 0
+  },
+  {
+   "id": "f0c053ed-f3a5-4b5e-9c36-bd12004d7629",
+   "claim": 1
+  },
+  {
+   "id": "d2f4effc-364b-45ca-a22e-8cd7b4e61efd",
+   "claim": 0
+  },
+  {
+   "id": "5316ac13-11c5-446a-bcac-e8f65021ce63",
+   "claim": 0
+  },
+  {
+   "id": "7f986077-b6f8-4af2-9395-54a60b359cef",
+   "claim": 1
+  }
+ ]
+}

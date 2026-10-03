@@ -1,0 +1,1 @@
+k=40: not labelled (the labeller's response was stopped by a safety filter); excluded from eligibility; not opened by the designer.
