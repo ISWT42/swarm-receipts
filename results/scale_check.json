@@ -1,0 +1,71 @@
+{
+  "limits": [
+    "Synthetic, ordered rows with representative structured action and output; not real AI Village data.",
+    "Measures index building and one streamed query, not classification of one million claims.",
+    "Peak RSS does not include kernel filesystem caches; the index uses disk space."
+  ],
+  "measured_at_utc": "2026-10-03T08:21:59.919954+00:00",
+  "measurement": "Separate child process ru_maxrss; Linux KiB converted to MiB",
+  "memory_ceiling_mib": 128,
+  "passed": true,
+  "platform": "linux",
+  "python_version": "3.10.12",
+  "runs": [
+    {
+      "candidate_stream_seconds": 0.243,
+      "checks": {
+        "indexed_count_matches": true,
+        "peak_rss_below_128_mib": true,
+        "streamed_candidate_count_matches": true,
+        "temporary_data_and_index_removed": true
+      },
+      "compressed_turn_bytes": 326685,
+      "counts": {
+        "enriched_turns": 0,
+        "indexed_turns": 100000,
+        "sessions": 1,
+        "turns": 100000,
+        "unassigned_turns": 0,
+        "untimed_turns": 0
+      },
+      "generation_seconds": 0.398,
+      "index_seconds": 3.526,
+      "indexed_turns": 100000,
+      "peak_rss_mib": 19.625,
+      "representative_action_output_bytes": 165,
+      "representative_record_bytes": 288,
+      "requested_turns": 100000,
+      "sqlite_index_bytes": 50352128,
+      "streamed_candidate_turns": 100000,
+      "total_seconds": 4.171
+    },
+    {
+      "candidate_stream_seconds": 2.49,
+      "checks": {
+        "indexed_count_matches": true,
+        "peak_rss_below_128_mib": true,
+        "streamed_candidate_count_matches": true,
+        "temporary_data_and_index_removed": true
+      },
+      "compressed_turn_bytes": 3256375,
+      "counts": {
+        "enriched_turns": 0,
+        "indexed_turns": 1000000,
+        "sessions": 1,
+        "turns": 1000000,
+        "unassigned_turns": 0,
+        "untimed_turns": 0
+      },
+      "generation_seconds": 4.346,
+      "index_seconds": 36.723,
+      "indexed_turns": 1000000,
+      "peak_rss_mib": 19.375,
+      "representative_action_output_bytes": 165,
+      "representative_record_bytes": 288,
+      "requested_turns": 1000000,
+      "sqlite_index_bytes": 503693312,
+      "streamed_candidate_turns": 1000000,
+      "total_seconds": 43.591
+    }
+  ]
+}

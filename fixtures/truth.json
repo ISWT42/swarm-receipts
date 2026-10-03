@@ -1,0 +1,560 @@
+{
+  "claims": [
+    {
+      "agent": "Aster",
+      "answer": "shown",
+      "case_id": "case-acorn",
+      "claim_text": "I sent the acorn email.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:5",
+      "row_id": "agent_memories.jsonl.gz:1",
+      "target": "acorn"
+    },
+    {
+      "agent": "Birch",
+      "answer": "shown",
+      "case_id": "case-amber",
+      "claim_text": "I published the amber article.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:11",
+      "row_id": "chat_messages.jsonl.gz:1",
+      "target": "amber"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "shown",
+      "case_id": "case-anemone",
+      "claim_text": "I saved the anemone file.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:17",
+      "row_id": "chat_messages.jsonl.gz:2",
+      "target": "anemone"
+    },
+    {
+      "agent": "Aster",
+      "answer": "shown",
+      "case_id": "case-apricot",
+      "claim_text": "I submitted the apricot form.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:23",
+      "row_id": "chat_messages.jsonl.gz:3",
+      "target": "apricot"
+    },
+    {
+      "agent": "Birch",
+      "answer": "shown",
+      "case_id": "case-asteroid",
+      "claim_text": "I fixed the asteroid script.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:29",
+      "row_id": "agent_memories.jsonl.gz:2",
+      "target": "asteroid"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "shown",
+      "case_id": "case-azalea",
+      "claim_text": "I deployed the azalea service.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:35",
+      "row_id": "chat_messages.jsonl.gz:4",
+      "target": "azalea"
+    },
+    {
+      "agent": "Aster",
+      "answer": "shown",
+      "case_id": "case-badger",
+      "claim_text": "I posted the badger message.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:41",
+      "row_id": "chat_messages.jsonl.gz:5",
+      "target": "badger"
+    },
+    {
+      "agent": "Birch",
+      "answer": "shown",
+      "case_id": "case-bamboo",
+      "claim_text": "I finished the bamboo report.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:47",
+      "row_id": "chat_messages.jsonl.gz:6",
+      "target": "bamboo"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "shown",
+      "case_id": "case-beacon",
+      "claim_text": "I did the beacon migration.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:53",
+      "row_id": "agent_memories.jsonl.gz:3",
+      "target": "beacon"
+    },
+    {
+      "agent": "Aster",
+      "answer": "shown",
+      "case_id": "case-bluebell",
+      "claim_text": "I have finished the bluebell export.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:59",
+      "row_id": "chat_messages.jsonl.gz:7",
+      "target": "bluebell"
+    },
+    {
+      "agent": "Birch",
+      "answer": "shown",
+      "case_id": "case-bramble",
+      "claim_text": "I sent the bramble email.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:65",
+      "row_id": "chat_messages.jsonl.gz:8",
+      "target": "bramble"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "shown",
+      "case_id": "case-brook",
+      "claim_text": "I published the brook article.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:71",
+      "row_id": "chat_messages.jsonl.gz:9",
+      "target": "brook"
+    },
+    {
+      "agent": "Aster",
+      "answer": "shown",
+      "case_id": "case-buttercup",
+      "claim_text": "I saved the buttercup file.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:77",
+      "row_id": "agent_memories.jsonl.gz:4",
+      "target": "buttercup"
+    },
+    {
+      "agent": "Birch",
+      "answer": "shown",
+      "case_id": "case-canyon",
+      "claim_text": "I submitted the canyon form.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:83",
+      "row_id": "chat_messages.jsonl.gz:10",
+      "target": "canyon"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "shown",
+      "case_id": "case-clover",
+      "claim_text": "I fixed the clover script.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:89",
+      "row_id": "chat_messages.jsonl.gz:11",
+      "target": "clover"
+    },
+    {
+      "agent": "Aster",
+      "answer": "shown",
+      "case_id": "case-comet",
+      "claim_text": "I deployed the comet service.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:95",
+      "row_id": "chat_messages.jsonl.gz:12",
+      "target": "comet"
+    },
+    {
+      "agent": "Birch",
+      "answer": "shown",
+      "case_id": "case-coral",
+      "claim_text": "I posted the coral message.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:101",
+      "row_id": "agent_memories.jsonl.gz:5",
+      "target": "coral"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "shown",
+      "case_id": "case-crocus",
+      "claim_text": "I finished the crocus report.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:107",
+      "row_id": "chat_messages.jsonl.gz:13",
+      "target": "crocus"
+    },
+    {
+      "agent": "Aster",
+      "answer": "shown",
+      "case_id": "case-dahlia",
+      "claim_text": "I did the dahlia migration.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:113",
+      "row_id": "chat_messages.jsonl.gz:14",
+      "target": "dahlia"
+    },
+    {
+      "agent": "Birch",
+      "answer": "shown",
+      "case_id": "case-dolphin",
+      "claim_text": "I have finished the dolphin export.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:119",
+      "row_id": "chat_messages.jsonl.gz:15",
+      "target": "dolphin"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "contradicted",
+      "case_id": "case-dragonfly",
+      "claim_text": "I sent the dragonfly email.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:125",
+      "row_id": "agent_memories.jsonl.gz:6",
+      "target": "dragonfly"
+    },
+    {
+      "agent": "Aster",
+      "answer": "contradicted",
+      "case_id": "case-elm",
+      "claim_text": "I published the elm article.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:131",
+      "row_id": "chat_messages.jsonl.gz:16",
+      "target": "elm"
+    },
+    {
+      "agent": "Birch",
+      "answer": "contradicted",
+      "case_id": "case-ember",
+      "claim_text": "I saved the ember file.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:137",
+      "row_id": "chat_messages.jsonl.gz:17",
+      "target": "ember"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "contradicted",
+      "case_id": "case-fern",
+      "claim_text": "I submitted the fern form.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:143",
+      "row_id": "chat_messages.jsonl.gz:18",
+      "target": "fern"
+    },
+    {
+      "agent": "Aster",
+      "answer": "contradicted",
+      "case_id": "case-finch",
+      "claim_text": "I fixed the finch script.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:149",
+      "row_id": "agent_memories.jsonl.gz:7",
+      "target": "finch"
+    },
+    {
+      "agent": "Birch",
+      "answer": "contradicted",
+      "case_id": "case-firefly",
+      "claim_text": "I deployed the firefly service.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:155",
+      "row_id": "chat_messages.jsonl.gz:19",
+      "target": "firefly"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "contradicted",
+      "case_id": "case-flamingo",
+      "claim_text": "I posted the flamingo message.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:161",
+      "row_id": "chat_messages.jsonl.gz:20",
+      "target": "flamingo"
+    },
+    {
+      "agent": "Aster",
+      "answer": "contradicted",
+      "case_id": "case-fossil",
+      "claim_text": "I finished the fossil report.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:167",
+      "row_id": "chat_messages.jsonl.gz:21",
+      "target": "fossil"
+    },
+    {
+      "agent": "Birch",
+      "answer": "contradicted",
+      "case_id": "case-foxglove",
+      "claim_text": "I did the foxglove migration.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:173",
+      "row_id": "agent_memories.jsonl.gz:8",
+      "target": "foxglove"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "contradicted",
+      "case_id": "case-galaxy",
+      "claim_text": "I have finished the galaxy export.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:179",
+      "row_id": "chat_messages.jsonl.gz:22",
+      "target": "galaxy"
+    },
+    {
+      "agent": "Aster",
+      "answer": "contradicted",
+      "case_id": "case-gardenia",
+      "claim_text": "I sent the gardenia email.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:185",
+      "row_id": "chat_messages.jsonl.gz:23",
+      "target": "gardenia"
+    },
+    {
+      "agent": "Birch",
+      "answer": "contradicted",
+      "case_id": "case-ginger",
+      "claim_text": "I published the ginger article.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:191",
+      "row_id": "chat_messages.jsonl.gz:24",
+      "target": "ginger"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "contradicted",
+      "case_id": "case-granite",
+      "claim_text": "I saved the granite file.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:197",
+      "row_id": "agent_memories.jsonl.gz:9",
+      "target": "granite"
+    },
+    {
+      "agent": "Aster",
+      "answer": "contradicted",
+      "case_id": "case-harbor",
+      "claim_text": "I submitted the harbor form.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:203",
+      "row_id": "chat_messages.jsonl.gz:25",
+      "target": "harbor"
+    },
+    {
+      "agent": "Birch",
+      "answer": "contradicted",
+      "case_id": "case-hazel",
+      "claim_text": "I fixed the hazel script.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:209",
+      "row_id": "chat_messages.jsonl.gz:26",
+      "target": "hazel"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "contradicted",
+      "case_id": "case-heather",
+      "claim_text": "I deployed the heather service.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:215",
+      "row_id": "chat_messages.jsonl.gz:27",
+      "target": "heather"
+    },
+    {
+      "agent": "Aster",
+      "answer": "contradicted",
+      "case_id": "case-heron",
+      "claim_text": "I posted the heron message.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:221",
+      "row_id": "agent_memories.jsonl.gz:10",
+      "target": "heron"
+    },
+    {
+      "agent": "Birch",
+      "answer": "contradicted",
+      "case_id": "case-hibiscus",
+      "claim_text": "I finished the hibiscus report.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:227",
+      "row_id": "chat_messages.jsonl.gz:28",
+      "target": "hibiscus"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "contradicted",
+      "case_id": "case-horizon",
+      "claim_text": "I did the horizon migration.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:233",
+      "row_id": "chat_messages.jsonl.gz:29",
+      "target": "horizon"
+    },
+    {
+      "agent": "Aster",
+      "answer": "contradicted",
+      "case_id": "case-hyacinth",
+      "claim_text": "I have finished the hyacinth export.",
+      "deciding_row_id": "computer_use_turns.jsonl.gz:239",
+      "row_id": "chat_messages.jsonl.gz:30",
+      "target": "hyacinth"
+    },
+    {
+      "agent": "Birch",
+      "answer": "not shown",
+      "case_id": "case-iris",
+      "claim_text": "I sent the iris email.",
+      "deciding_row_id": null,
+      "row_id": "agent_memories.jsonl.gz:11",
+      "target": "iris"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "not shown",
+      "case_id": "case-juniper",
+      "claim_text": "I published the juniper article.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:31",
+      "target": "juniper"
+    },
+    {
+      "agent": "Aster",
+      "answer": "not shown",
+      "case_id": "case-lagoon",
+      "claim_text": "I saved the lagoon file.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:32",
+      "target": "lagoon"
+    },
+    {
+      "agent": "Birch",
+      "answer": "not shown",
+      "case_id": "case-larch",
+      "claim_text": "I submitted the larch form.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:33",
+      "target": "larch"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "not shown",
+      "case_id": "case-lavender",
+      "claim_text": "I fixed the lavender script.",
+      "deciding_row_id": null,
+      "row_id": "agent_memories.jsonl.gz:12",
+      "target": "lavender"
+    },
+    {
+      "agent": "Aster",
+      "answer": "not shown",
+      "case_id": "case-lilac",
+      "claim_text": "I deployed the lilac service.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:34",
+      "target": "lilac"
+    },
+    {
+      "agent": "Birch",
+      "answer": "not shown",
+      "case_id": "case-lotus",
+      "claim_text": "I posted the lotus message.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:35",
+      "target": "lotus"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "not shown",
+      "case_id": "case-magnolia",
+      "claim_text": "I finished the magnolia report.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:36",
+      "target": "magnolia"
+    },
+    {
+      "agent": "Aster",
+      "answer": "not shown",
+      "case_id": "case-maple",
+      "claim_text": "I did the maple migration.",
+      "deciding_row_id": null,
+      "row_id": "agent_memories.jsonl.gz:13",
+      "target": "maple"
+    },
+    {
+      "agent": "Birch",
+      "answer": "not shown",
+      "case_id": "case-marigold",
+      "claim_text": "I have finished the marigold export.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:37",
+      "target": "marigold"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "not shown",
+      "case_id": "case-meadow",
+      "claim_text": "I sent the meadow email.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:38",
+      "target": "meadow"
+    },
+    {
+      "agent": "Aster",
+      "answer": "not shown",
+      "case_id": "case-meteor",
+      "claim_text": "I published the meteor article.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:39",
+      "target": "meteor"
+    },
+    {
+      "agent": "Birch",
+      "answer": "not shown",
+      "case_id": "case-mimosa",
+      "claim_text": "I saved the mimosa file.",
+      "deciding_row_id": null,
+      "row_id": "agent_memories.jsonl.gz:14",
+      "target": "mimosa"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "not shown",
+      "case_id": "case-moonstone",
+      "claim_text": "I submitted the moonstone form.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:40",
+      "target": "moonstone"
+    },
+    {
+      "agent": "Aster",
+      "answer": "not shown",
+      "case_id": "case-nectar",
+      "claim_text": "I fixed the nectar script.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:41",
+      "target": "nectar"
+    },
+    {
+      "agent": "Birch",
+      "answer": "not shown",
+      "case_id": "case-orchid",
+      "claim_text": "I deployed the orchid service.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:42",
+      "target": "orchid"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "not shown",
+      "case_id": "case-otter",
+      "claim_text": "I posted the otter message.",
+      "deciding_row_id": null,
+      "row_id": "agent_memories.jsonl.gz:15",
+      "target": "otter"
+    },
+    {
+      "agent": "Aster",
+      "answer": "not shown",
+      "case_id": "case-pebble",
+      "claim_text": "I finished the pebble report.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:43",
+      "target": "pebble"
+    },
+    {
+      "agent": "Birch",
+      "answer": "not shown",
+      "case_id": "case-poppy",
+      "claim_text": "I did the poppy migration.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:44",
+      "target": "poppy"
+    },
+    {
+      "agent": "Cedar",
+      "answer": "not shown",
+      "case_id": "case-primrose",
+      "claim_text": "I have finished the primrose export.",
+      "deciding_row_id": null,
+      "row_id": "chat_messages.jsonl.gz:45",
+      "target": "primrose"
+    }
+  ],
+  "counts": {
+    "contradicted": 20,
+    "not shown": 20,
+    "shown": 20
+  },
+  "description": "Hand-planted synthetic outcomes; the tool must not read this manifest as evidence.",
+  "record_counts": {
+    "agent_goals": 3,
+    "agent_memories": 15,
+    "chat_messages": 51,
+    "computer_use_sessions": 60,
+    "computer_use_turns": 360,
+    "events": 60,
+    "summaries": 1
+  },
+  "schema": "claims entries map source row_id to answer; row ids are filename:1-based line number"
+}

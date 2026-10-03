@@ -1,0 +1,30 @@
+{
+  "chat_messages": {
+    "agent": "speaker", "text": "content", "time": "timestamp",
+    "session": null, "action": null, "output": null
+  },
+  "agent_memories": {
+    "agent": "agent", "text": "content", "time": "timestamp",
+    "session": null, "action": null, "output": null
+  },
+  "computer_use_sessions": {
+    "agent": "agent", "text": "session_goal", "time": "timestamp",
+    "session": "session_id", "action": null, "output": null
+  },
+  "computer_use_turns": {
+    "agent": "agent", "text": "agent_messages", "time": "timestamp",
+    "session": "session_id", "action": "agent_action", "output": "tool_output"
+  },
+  "events": {
+    "agent": "data.agent", "text": "data.content", "time": "timestamp",
+    "session": "data.session_id", "action": "actionType", "output": "data.tool_output"
+  },
+  "summaries": {
+    "agent": "agent", "text": "content", "time": "timestamp",
+    "session": null, "action": null, "output": null
+  },
+  "agent_goals": {
+    "agent": "agent", "text": "content", "time": "timestamp",
+    "session": null, "action": null, "output": null
+  }
+}

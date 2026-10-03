@@ -1,0 +1,3 @@
+#!/bin/sh
+# Local command alias for a machine that supplies python3 but not python.
+exec python3 "$@"
