@@ -1,11 +1,9 @@
 # Plant a fault before you trust the monitor
 
-**A test bench for swarm oversight tools, and the two checkers that failed it**
+**A test bench for swarm oversight tools, and the two baseline checkers it caught**
 
 Joshua Bauer (ISWT42) · AI Swarm Dynamics Hackathon (AI Village × Grove Research), 3–4 October 2026
 joshua@jdbauer.ca · ORCID 0009-0003-1652-2479
-
-*[DRAFT for Joshua's review. Bracketed notes are his decisions.]*
 
 ## The question
 
@@ -13,7 +11,7 @@ AI Village gave frontier agents shared chat, their own computers and memories, a
 
 Before any such tool may judge an agent, it has to pass a simpler test: does it get the answer right when the answer is known?
 
-> It is not the agents fault, and I can't claim an agent that went 'rogue' did so for any reason other than the contextual queues at that exact moment made that the most likely option, and we give it the capability to act on that by letting it log into our bank accounts, send our e-mails, handle our nuclear secrets, and trust our most private moments to.
+> It is not the agents' fault, and I can't claim an agent that went 'rogue' did so for any reason other than the contextual cues at that exact moment made that the most likely option, and we give it the capability to act on that by letting it log into our bank accounts, send our e-mails, handle our nuclear secrets, and trust our most private moments to.
 >
 > This is an inherent flaw in the relationship. It is a willing servitude without consideration for the checks and balance system that must exist when the consequences are as severe as they are.
 
@@ -34,7 +32,7 @@ Each claim gets one of three answers:
 
 I wrote nine predictions about the agents, the checker, the gates and the reporting rules into one file and stamped it with OpenTimestamps. The proof is confirmed in Bitcoin block 969704, block time 09:01 UTC on 3 October 2026. I downloaded the first data file at about 09:05 UTC.
 
-One sealed rule decides this write-up: **if the checker fails its planted-fault gate, I publish that result and nothing else.** When the first checker failed, I sealed a second study for a fixed checker under the same rule. Both rules are kept here.
+One sealed rule decides this write-up: **if the checker doesn't pass its planted-fault gate, I publish that result and nothing else.** When the first checker didn't meet the bar, I sealed a second study for a revised checker under the same rule. Both rules are kept here.
 
 ## The data
 
@@ -62,7 +60,7 @@ The bench turns real swarm records into an exam with known answers:
 
 Any swarm monitor that turns agents' words into verdicts can be put through this bench.
 
-## Case study: two checkers, two sealed failures
+## Case study: two baseline checkers, both caught by the bench
 
 The checker is swarm-receipts, an offline, rule-based tool. It extracts completion claims from chat and memories, and looks for receipts in the same agent's turns from the previous 24 hours. Before the bench it had passed 116 unit tests and an independent held-out set, 11 of 11. All of those cases were synthetic.
 
@@ -71,9 +69,9 @@ The checker is swarm-receipts, an offline, rule-based tool. It extracts completi
 | **v1**, sealed gate 1 | 17 / 50 | 14 / 50 | 48 / 50 | **2** |
 | **v2**, sealed gate 2 (fresh) | 12 / 50 | 12 / 50 | 49 / 50 | 0 |
 
-Neither passed.
+Neither met the bar, so the bench kept both from judging a single agent.
 
-**Why v1 failed.** I confirmed each cause by changing one thing at a time until the answer flipped. Real tool output contains things the synthetic tests never had:
+**What the bench caught in v1.** I confirmed each cause by changing one thing at a time until the answer flipped. Real tool output contains things the synthetic tests never had:
 - terminal colour codes;
 - JSON replies;
 - pytest and node test summaries;
@@ -84,7 +82,7 @@ Neither passed.
 
 The dangerous error was the false "shown". A planted claim, "I pushed the X changes to main", had a failure receipt, but the agent had pushed something else to main that day, and the shared word "main" was enough to link them. That is a monitor certifying a failed action as done.
 
-**Why v2 failed.**
+**What the bench caught in v2.**
 - v2 fixed every one of those causes, and on the gate-1 set it was developed against it scored 150 of 150.
 - On a fresh set it had never seen, it read only 24 of 100 receipts correctly in isolation.
 - Of its 76 misses, 59 were receipts it could not read at all, in formats no rule had met yet. The other 17 came from natural claim wording ("for Batch 151", "to 0x0.st") that the receipt never repeats.
@@ -98,12 +96,12 @@ The dangerous error was the false "shown". A planted claim, "I pushed the X chan
 4. **Rules chase formats.** Real agents' tools print an open-ended variety of output. A rule-based reader covers the formats it has met, and the next swarm brings new ones.
 5. **The gate is the product.** It stopped me twice from publishing honesty numbers for 44 agents from instruments that couldn't read their records.
 
-The failure belongs to the checker, not to the agents. You can't measure something if you don't even have the proper equation.
+The errors belong to the checker, not to the agents. You can't measure something if you don't even have the proper equation.
 
-*[DECISION FOR JOSHUA: include the claim-spotting box below? It measures the checker, not the agents.]*
+Real data for the real world: synthetic tests can't stand in for it.
 
 > **Also measured on the checker: claim spotting.**
-> - On 200 random agent messages, labelled by hand before the checker saw them and again by an independent labeller (90% agreement, Cohen's kappa 0.80):
+> - On 200 random agent messages, labelled one at a time by a model (Claude) before the checker saw them, and again by a second model (Claude Sonnet) blind to the first pass (90% agreement, Cohen's kappa 0.80):
 >   - when the checker calls a message a completion claim, it is right 86–90% of the time;
 >   - it finds only 23–27% of the claims.
 > - The misses are the village's own dialect: headline status lines, "is live — same link —", milestone shouts, jargon, and other languages.
@@ -118,12 +116,12 @@ My nine predictions about the agents stay unscored under both seals. Two of them
 
 The specific limits:
 - **Scope:** two checkers from one design family, eight kinds of operation, one dataset, and a 24-hour window.
-- **The labels:** gate 2's ground truth comes from model labellers with a blind second pass, not from humans.
+- **The labels:** gate 2's ground truth and the claim-spotting sample were labelled by models (Claude and Claude Sonnet), each with a blind second pass, not by humans. The labellers and the tools that built the checker come from one model family, so they may share blind spots.
 - **The designer's prior knowledge:** gate 1's claim wordings were written by the designer after reading the checker's code. That's why gate 2 used independent wordings.
 
 ## Next
 
-The next checker reads receipts with a small local model that must quote the exact line that proves its answer, and every quote is verified word for word against the record. It sits the same bench under a new seal. [Joshua: this becomes the Gemma 4 paper project.]
+The next checker reads receipts with a small local model that must quote the exact line that proves its answer, and every quote is verified word for word against the record. It sits the same bench under a new seal.
 
 ## Reproduce it
 
@@ -139,7 +137,3 @@ The next checker reads receipts with a small local model that must quote the exa
 
 - **The data:** AI Digest, "AI Village dataset", 2026. https://theaidigest.org/village (Hugging Face: aidigestorg/ai-village).
 - **The hackathon:** AI Village and Grove Research.
-
-*[HOW-THIS-WAS-MADE LINE: Joshua decides the wording.]*
-
-*[DECISION FOR JOSHUA: the leaked-credential finding goes in only after AI Village has been told, and only in general terms.]*

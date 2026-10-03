@@ -2,7 +2,7 @@
 
 > **AI Swarm Dynamics Hackathon (3–4 Oct 2026): start with [WRITEUP.md](WRITEUP.md).**
 >
-> - **The entry:** a planted-fault bench for swarm oversight tools, and the sealed audit in which this checker failed it twice: v1 at tag `v1-sealed`, v2 at tag `v2-sealed`.
+> - **The entry:** a planted-fault bench for swarm oversight tools, and the sealed audit in which the bench caught two baseline versions of this checker before either judged an agent: v1 at tag `v1-sealed`, v2 at tag `v2-sealed`.
 > - **Where things are:** the bench, the sealed capsules, the designs, the results and the timestamp proofs are in [audit/](audit/README.md).
 > - **Data:** no data is included. The AI Village dataset is gated by its publishers.
 > - **Below:** the checker's own documentation, as it was built.
