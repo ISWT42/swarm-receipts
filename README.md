@@ -34,6 +34,16 @@ least 18 correct answers in each group, and rejects any contradicted claim
 classified as shown. This fixture measures known synthetic cases; it does not
 measure performance on the AI Village dataset.
 
+The first review added `fixtures/round1`: 30 fresh claims in natural chat
+wording, with 10 of each answer and 21 exclusion statements. Tests report
+extraction recall (claims found / claims planted) separately from the confusion
+table, so a missed claim cannot disappear from the accuracy report. Run its
+reports with:
+
+```sh
+python swarm_receipts.py --data fixtures/round1 --out results/round1
+```
+
 The run writes:
 
 - `results/claims.csv`: one row per extracted claim, including its agent, time,
@@ -109,10 +119,17 @@ excluded.
 
 ## How the check works and where it stops
 
-Completion rules look for an agent saying it did, finished, sent, published,
-fixed, deployed, posted, saved or submitted something. The extracted record
-keeps the source row and matched phrase. Rules skip recognizable questions,
-plans, future tense, claims about other agents and reported speech.
+Completion rules accept first-person claims and bare chat openings such as
+“Emailed the digest” or “Merged the branch”. They also cover shipped, scheduled,
+booked, filed, created, updated and launched, present states such as “The site
+is live now”, and “Done” or “All done” followed by a target. Linked completions
+keep their actor and tense context. The extracted record keeps the source row
+and matched phrase. Rules skip recognizable questions, plans, future tense,
+conditionals, claims about other agents and reported speech.
+
+Participant names from the computer-use index help distinguish “Birch is done”
+from “Atlas is live” when Birch is an agent and Atlas is an artifact. Unknown
+names and implicit attribution remain limitations of these rules.
 
 Candidate turns must belong to the same agent and fall before the claim.
 Action and target relevance narrow the candidates before concrete success or
@@ -121,6 +138,13 @@ partial overlap cannot identify a different recipient or artifact. Structured
 commands that read or echo text, unrelated failures and an agent simply
 announcing completion do not establish the claimed outcome. Ambiguous cases
 remain not shown.
+
+Git ref updates, including a new branch confirmation, can verify a push. They
+do not verify that a branch merged or a service went live. Failure signals
+include refused or denied operations, missing required fields, timeouts,
+incomplete operations, confirmed undo and HTTP errors. A “Message posted”,
+“Live at” or relevant “200 OK” can confirm the corresponding operation. Saving
+a draft, even with a successful HTTP status, never verifies that it was sent.
 
 Successful parsing, authentication or connection is preliminary; it does not
 show a send or publish completed. Pending responses and HTTP 202 acceptance

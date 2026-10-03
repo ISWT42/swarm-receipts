@@ -109,7 +109,7 @@ def run(args):
             writer.writeheader()
             for source in ("chat_messages", "agent_memories"):
                 for source_row in iter_source(data_dir, source, field_map, limit=args.limit):
-                    for claim in extract_claims(source_row):
+                    for claim in extract_claims(source_row, agent_lookup=index.is_agent):
                         candidates = index.candidates(claim.agent, claim.time, claim.keywords, args.window_hours)
                         decision = classify_claim(claim, candidates)
                         row = {

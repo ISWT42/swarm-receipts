@@ -325,6 +325,9 @@ class TurnIndex:
         self.connection.execute("PRAGMA temp_store=FILE")
         self.connection.execute("PRAGMA cache_size=-4096")
         self.connection.executescript("""
+            CREATE TABLE participants (
+                agent TEXT PRIMARY KEY COLLATE NOCASE
+            );
             CREATE TABLE sessions (
                 session TEXT NOT NULL, agent TEXT NOT NULL, goal TEXT NOT NULL,
                 PRIMARY KEY (session, agent)
@@ -411,8 +414,19 @@ class TurnIndex:
             if self.counts["indexed_turns"] % 1000 == 0:
                 self.connection.commit()
         self.connection.commit()
+        # Retain only distinct names, on disk, for detecting other-agent state
+        # assertions. The turns agent index streams this grouping in order.
+        self.connection.execute("INSERT OR IGNORE INTO participants SELECT agent FROM sessions")
+        self.connection.execute("INSERT OR IGNORE INTO participants SELECT agent FROM turns GROUP BY agent")
+        self.connection.commit()
         self._built = True
         return self
+
+    def is_agent(self, name: str) -> bool:
+        """Look up a participant name without holding a roster in memory."""
+        return self.connection.execute(
+            "SELECT 1 FROM participants WHERE agent=? LIMIT 1", (name,)
+        ).fetchone() is not None
 
     def candidates(
         self,

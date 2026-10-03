@@ -21,19 +21,53 @@ did done do finish finished complete completed send sent email mail message
 publish published article post posted save saved file submit submitted form
 fix fixed script deploy deployed service upload uploaded report migration export
 please successfully success http https www com org net txt json csv md py
+emailed email merge merged ship shipped schedule scheduled book booked filed
+create created update updated launch launched push pushed live up all with
+publishing sending uploading updating deploying creating release deployment
 """.split())
 
 VERB_CATEGORY = {
-    "sent": "send", "published": "publish", "posted": "post",
-    "saved": "save", "submitted": "submit", "fixed": "fix",
-    "deployed": "deploy", "uploaded": "submit", "finished": "complete",
-    "completed": "complete", "did": "complete", "done": "complete",
+    "sent": "send", "emailed": "send", "published": "publish", "posted": "post",
+    "saved": "save", "submitted": "submit", "fixed": "fix", "repaired": "fix",
+    "deployed": "deploy", "launched": "deploy", "live": "deploy", "up": "deploy",
+    "uploaded": "submit", "finished": "complete", "completed": "complete",
+    "did": "complete", "done": "complete", "merged": "merge", "shipped": "ship",
+    "scheduled": "schedule", "booked": "book", "filed": "file",
+    "created": "create", "updated": "update", "pushed": "push",
 }
+PAST_VERBS = "|".join(verb for verb in VERB_CATEGORY if verb not in ("live", "up"))
 CLAIM_PATTERN = re.compile(
-    r"\b(?:I|we|I've|we've)\s+"
-    r"(?:(?:have|had|just|already|finally|successfully|also|now)\s+)*"
-    r"(?P<verb>sent|published|posted|saved|submitted|fixed|deployed|uploaded|"
-    r"finished|completed|did|done)\b", re.IGNORECASE)
+    r"\b(?:I|we|I've|we've|I’ve|we’ve|I'm|we're|I’m|we’re)\s+"
+    r"(?:(?:have|had|am|are|all|just|already|finally|successfully|also|now)\s+)*"
+    r"(?P<verb>" + PAST_VERBS + r")\b", re.IGNORECASE)
+# Bare chat completions and state assertions are separate from CLAIM_PATTERN:
+# receipt filtering uses the latter to reject first-person narration only.
+CHAT_PREFACE = r"(?:(?:ok|okay|yes|yep|fyi|update|status|quick\s+update|good\s+news)[,:!—-]\s*)?"
+BARE_PATTERN = re.compile(
+    r"^" + CHAT_PREFACE + r"(?:(?:all|just|already|finally|successfully|also|now)\s+)*"
+    r"(?P<verb>" + PAST_VERBS + r")\b", re.I)
+STATE_PATTERN = re.compile(
+    r"^" + CHAT_PREFACE + r"(?P<target>.+?)\s+"
+    r"(?:is|are|has\s+been|have\s+been)\s+"
+    r"(?:(?:now|already|finally|all|officially)\s+)*"
+    r"(?P<verb>live|up|" + PAST_VERBS + r")\b", re.I)
+CONDITIONAL = re.compile(r"\b(?:if|unless|provided|assuming|supposing|whether|in\s+case)\b|"
+                         r"^\s*(?:when|once|as\s+soon\s+as)\b", re.I)
+UNCERTAIN_PREFIX = re.compile(r"\b(?:will|would|could|should|might|may|must|going\s+to|"
+                              r"plan|plans|planning|intend|intends|hope|hopes|want|wants|"
+                              r"need|needs|aim|aims|goal|objective|expect|expects)\b", re.I)
+INVERTED_QUESTION = re.compile(
+    r"^\s*(?:have|had|has|did|do|does|can|could|would|will|should|might|must)\s+"
+    r"(?:I|we|you|he|she|they)\b|^\s*(?:is|are|was|were|why|how|when|where|what)\b", re.I)
+CLOSER_VERBS = {
+    "publishing": "published", "sending": "sent", "uploading": "uploaded",
+    "updating": "updated", "deploying": "deployed", "creating": "created",
+    "merging": "merged", "shipping": "shipped", "scheduling": "scheduled",
+    "booking": "booked", "filing": "filed", "launching": "launched",
+    "posting": "posted", "saving": "saved", "fixing": "fixed",
+}
+CLOSER_INNER = re.compile(
+    r"^(?:with\s+)?(?P<verb>" + PAST_VERBS + "|" + "|".join(CLOSER_VERBS) + r")\b\s*", re.I)
 REPORTING = re.compile(
     r"\b(?:said|says|say|reported|reports|claimed|claims|told|quoted|wrote|"
     r"according\s+to|pretend|suppose|wish|if|whether|thought|think|believed|"
@@ -51,15 +85,26 @@ PRELIMINARY = re.compile(r"\b(?:parsed|parsing|authenticated|authentication|"
                          r"preparing|scheduled|enqueued|validation|validated)\b", re.I)
 UNRESOLVED = re.compile(r"\b(?:pending|queued|started|no\s+final\s+outcome)\b", re.I)
 ACTION_PATTERNS = {
-    "send": re.compile(r"\b(?:send|sent|deliver|delivery|smtp|sendmail)\b", re.I),
+    "send": re.compile(r"\b(?:send|sent|deliver|delivery|smtp|sendmail)\b|"
+                       r"(?:^|\n)\s*(?:email|emailed)\b", re.I),
     "publish": re.compile(r"\b(?:publish|published|publication|post|posted)\b|--request\s+POST\b|-X\s*POST\b", re.I),
     "post": re.compile(r"\b(?:post|posted|publish|published|send|sent)\b|--request\s+POST\b|-X\s*POST\b", re.I),
     "save": re.compile(r"\b(?:save|saved|write|written|persist|store|create|created)\b|write_file|write_text", re.I),
     "submit": re.compile(r"\b(?:submit|submitted|submission|upload|uploaded|post|posted)\b|--request\s+POST\b|-X\s*POST\b", re.I),
     "fix": re.compile(r"\b(?:fix|fixed|repair|patch|patched|test|tests|pytest|unittest)\b", re.I),
-    "deploy": re.compile(r"\b(?:deploy|deployed|deployment|rollout|release|released)\b|kubectl\s+apply", re.I),
+    "deploy": re.compile(r"\b(?:deploy|deployed|deployment|rollout|release|released|launch|launched)\b|kubectl\s+apply", re.I),
+    "push": re.compile(r"\b(?:push|pushed)\b", re.I),
+    "merge": re.compile(r"\b(?:merge|merged)\b", re.I),
+    "ship": re.compile(r"\b(?:ship|shipped|deploy|deployed|deployment|release|released|push|pushed|launch|launched)\b", re.I),
+    "schedule": re.compile(r"\b(?:schedule|scheduled|scheduling)\b", re.I),
+    "book": re.compile(r"\b(?:book|booked|booking|reserve|reserved|reservation)\b", re.I),
+    "file": re.compile(r"\b(?:filed|filing|submit|submitted|submission)\b|"
+                       r"(?:^|\n)\s*file\b", re.I),
+    "create": re.compile(r"\b(?:create|created|creation|write|written|mkdir|touch)\b|write_file|write_text", re.I),
+    "update": re.compile(r"\b(?:update|updated|edit|edited|modify|modified|patch|patched|write|written)\b|write_file|write_text", re.I),
     "complete": re.compile(r"\b(?:finish|finished|complete|completed|generate|generated|build|built|"
-                           r"run|execute|migration|export|write|save|create)\b", re.I),
+                           r"run|execute|migration|export|write|save|create|update|merge|push|"
+                           r"submit|send|publish|post|deploy|ship|schedule|book|file|fix)\b", re.I),
 }
 UNDO = re.compile(r"\b(?:rolled\s+back|rollback|roll\s+back|reverted|undo|undone|revoked|deleted|removed)\b", re.I)
 CONFIRMED_UNDO = re.compile(r"\b(?:rolled\s+back|reverted|undone|revoked|deleted|removed)\b|"
@@ -67,21 +112,46 @@ CONFIRMED_UNDO = re.compile(r"\b(?:rolled\s+back|reverted|undone|revoked|deleted
 FAILURE = re.compile(
     r"\b(?:permission\s+denied|access\s+denied|not\s+found|disk\s+full|"
     r"refused|rejected|forbidden|unauthorized|timed\s+out|timeout|exception|"
-    r"failed|failure|error|fatal|aborted|cancelled|canceled)\b|"
-    r"\b(?:not|never)\s+(?:sent|saved|published|posted|submitted|deployed|completed|fixed)\b", re.I)
+    r"denied|missing\s+required|failed|failure|error|fatal|aborted|cancelled|canceled)\b|"
+    r"\b(?:not|never)\s+(?:sent|saved|published|posted|submitted|deployed|completed|"
+    r"complete|fixed|merged|shipped|scheduled|booked|filed|created|updated|launched|pushed)\b", re.I)
 HTTP_STATUS = re.compile(r"\b(?:HTTP(?:/\d(?:\.\d)?)?\s*(?:status)?\s*[:=]?\s*|"
                          r"(?:status(?:_code| code)?|response(?:_code| code)?)\s*[\"']?\s*[:=]\s*)([1-5]\d\d)\b", re.I)
+# An unlabelled status is recognizable when it stands alone or precedes an
+# HTTP reason phrase. A count such as '422 rows exported' is not a status.
+BARE_HTTP_STATUS = re.compile(
+    r"^\s*([1-5]\d\d)(?:\s*$|\s+(?:OK|Created|Accepted|No\s+Content|"
+    r"Unauthorized|Forbidden|Not\s+Found|Conflict|Unprocessable(?:\s+Entity|\s+Content)?|"
+    r"Too\s+Many\s+Requests|Internal\s+Server\s+Error|Not\s+Implemented|"
+    r"Bad\s+Gateway|Service\s+Unavailable|Gateway\s+Timeout)\b)", re.I)
 EXIT_STATUS = re.compile(r"\b(?:exit(?:_code| code)?|returncode|return_code)\s*[\"']?\s*[:=]\s*(-?\d+)\b", re.I)
 GENERIC_SUCCESS = re.compile(r"\b(?:successfully|succeeded|successful|success|completed|accepted)\b", re.I)
+GIT_REF_SUCCESS = re.compile(
+    r"^\s*(?:[=*+]\s+)?(?:[0-9a-f]{3,40}\.\.[0-9a-f]{3,40}|\[new\s+branch\])"
+    r"\s+\S+\s+->\s+\S+(?:\s|$)", re.I)
+DRAFT = re.compile(r"\b(?:draft|drafts|unsent)\b", re.I)
+DRAFT_OPERATION = re.compile(
+    r"^\s*(?:save|saved|create|created|write|written|update|updated|edit|edited|"
+    r"store|stored|persist|persisted)\b[^\n;]{0,160}\bdraft\b", re.I)
 SPECIFIC_SUCCESS = {
-    "send": re.compile(r"\b(?:sent|delivered)\b", re.I),
+    "send": re.compile(r"\b(?:sent|delivered|message\s+posted)\b", re.I),
     "publish": re.compile(r"\b(?:published|posted)\b", re.I),
     "post": re.compile(r"\b(?:posted|published|sent)\b", re.I),
     "save": re.compile(r"\b(?:saved|written|persisted|stored)\b", re.I),
     "submit": re.compile(r"\b(?:submitted|uploaded|accepted)\b", re.I),
     "fix": re.compile(r"\b(?:fixed|repaired|tests?\s+passed|all\s+tests?\s+pass|\d+\s+passed)\b", re.I),
-    "deploy": re.compile(r"\b(?:deployed|released|rollout\s+(?:complete|successful))\b", re.I),
-    "complete": re.compile(r"\b(?:completed|finished|done)\b", re.I),
+    "deploy": re.compile(r"\b(?:deployed|released|launched|live\s+at|rollout\s+(?:complete|successful))\b", re.I),
+    "push": re.compile(r"\b(?:pushed)\b", re.I),
+    "merge": re.compile(r"\b(?:merged|merge\s+(?:complete|successful))\b", re.I),
+    "ship": re.compile(r"\b(?:shipped|deployed|released|launched|live\s+at)\b", re.I),
+    "schedule": re.compile(r"\b(?:scheduled|scheduling\s+(?:complete|successful))\b", re.I),
+    "book": re.compile(r"\b(?:booked|reserved|reservation\s+(?:confirmed|complete|successful))\b", re.I),
+    "file": re.compile(r"\b(?:filed|submitted)\b", re.I),
+    "create": re.compile(r"\b(?:created|written)\b", re.I),
+    "update": re.compile(r"\b(?:updated|edited|modified|patched|written)\b", re.I),
+    "complete": re.compile(r"\b(?:completed|finished|done|sent|published|posted|saved|"
+                            r"submitted|fixed|deployed|pushed|merged|shipped|scheduled|booked|"
+                            r"filed|created|updated|launched|live\s+at)\b", re.I),
 }
 # An unqualified outcome such as 'permission denied' can be tied to the
 # requested operation. A line naming a different object cannot. This explicit
@@ -99,12 +169,18 @@ out connection network refused reset health check rolled rollback back roll
 reverted undo undone revoked deleted removed transaction syntax applied repair
 fix patch repaired fixed tests test passed passing pass false true null none
 ok value boolean errno traceback recent call last name content message
+missing required complete sent published posted saved submitted live at shipped
+pushed push merged merge booked booking reserved reservation confirmed filed
+filing scheduled schedule scheduling updated update modified edited launch launched
+unprocessable entity too many requests conflict rate limit implemented draft unsent
+field fields parameter parameters argument arguments property properties
 """.split())
 ACTION_WORDS = OUTCOME_WORDS | set("""
 curl request requests http https method post put patch delete get x d data
 browser click button press select shell terminal command cmd tool action
 send_email write_file write_text function arguments parameters execute
 complete finish publish submit deploy save run email form file service article
+git origin branch remote create mkdir touch ship book reserve edit modify schedule
 """.split())
 NARRATION_PATH = re.compile(r"(?:^|\.)(?:agent_messages|messages|chat|transcript|"
                             r"screenshot_metadata)(?:\[|\.|$)", re.I)
@@ -154,17 +230,68 @@ class Decision:
 def _inside_quote(sentence, position):
     prefix = sentence[:position]
     # Straight and smart quotes denote quotation. Contractions are not quotes.
-    single_quotes = re.sub(r"(?<=\w)'(?=\w)", "", prefix)
+    single_quotes = re.sub(r"(?<=\w)['’](?=\w)", "", prefix)
     return (prefix.count('"') % 2 == 1 or prefix.count("“") > prefix.count("”")
-            or prefix.count("‘") > prefix.count("’") or single_quotes.count("'") % 2 == 1)
+            or single_quotes.count("‘") > single_quotes.count("’") or single_quotes.count("'") % 2 == 1)
 
 
-def extract_claims(row):
-    """Extract explicit first-person past completions from chat or memory.
+def _other_actor(target, agent, state=False, agent_lookup=None):
+    """Reject explicit third-person attribution, without guessing identities."""
+    actor = re.match(r"^([\w-]+)\s+(?:(?:has|have|had|just|already)\s+)*(?:" + PAST_VERBS + r")\b", target, re.I)
+    if actor:
+        name = actor.group(1)
+        if (name.casefold() != agent.casefold() and
+                (name[:1].isupper() or name.casefold() in ("he", "she", "they")
+                 or (agent_lookup and agent_lookup(name)))):
+            return True
+    if state and re.match(r"^(?:he|she|they|you|his|her|their|your|another\s+agent|"
+                          r"other\s+agents?)\b", target, re.I):
+        return True
+    if state and re.search(r"\b(?:agent|assistant|person)\b", target, re.I):
+        return True
+    if state and agent_lookup and target.strip().casefold() != agent.casefold() and agent_lookup(target.strip()):
+        return True
+    if state:
+        for owner in re.findall(r"\b([\w-]+)['’]s\b", target):
+            if owner.lower() not in (agent.lower(), "today", "yesterday"):
+                return True
+    for owner in re.findall(r"\bby\s+([\w-]+)", target, re.I):
+        # 'by handling empty input' and 'by the patch' describe methods.
+        if owner in ("the", "a", "an", "this", "that") or (owner.islower() and owner.endswith("ing")):
+            continue
+        if owner.lower() in (agent.lower(), "me", "us", "now", "then", "today",
+                              "yesterday", "tomorrow", "noon", "midnight", "email", "mail", "hand", "api", "http", "smtp"):
+            continue
+        if (owner[:1].isupper() or owner.lower() in ("him", "her", "them", "someone", "another")
+                or (agent_lookup and agent_lookup(owner))):
+            return True
+    return False
 
-    Questions, conditional statements, reported speech, negative claims and
-    future statements are deliberately left out. One sentence can contain
-    several explicit 'I ...' completions; each keeps its own phrase and id.
+
+def _role_prefix(prefix, agent):
+    label = re.fullmatch(r"\s*([\w .-]+)\s*[:—]\s*", prefix)
+    return bool(label and label.group(1).strip().lower() not in
+                (agent.lower(), "update", "quick update", "status", "fyi", "note", "good news", "done", "all done"))
+
+
+def _closer_target(verb, target):
+    target = target.strip(" .!;,:—–-")
+    if verb == "done":
+        inner = CLOSER_INNER.match(target)
+        if inner and inner.group("verb").lower() != "done":
+            inner_verb = inner.group("verb").lower()
+            verb = CLOSER_VERBS.get(inner_verb, inner_verb)
+            target = target[inner.end():].strip(" .!;,:—–-")
+    return verb, target
+
+
+def extract_claims(row, agent_lookup=None):
+    """Extract first-person completions, bare chat verbs, closers and states.
+
+    Bare past-tense message clauses implicitly belong to the speaker. State
+    claims identify an artifact, while explicit third-person attribution is
+    excluded. Questions, conditionals, plans and reported speech remain out.
+    Receipt filtering still uses only the first-person CLAIM_PATTERN.
     """
     agent = row.get("agent")
     if agent is None or not str(agent).strip():
@@ -172,36 +299,79 @@ def extract_claims(row):
     text = text_value(row.get("text"))
     claims = []
     boundaries = list(re.finditer(r"(?<=[.!?])\s+|[\r\n]+", text))
-    spans = []
+    sentences = []
     start = 0
     for boundary in boundaries:
-        spans.append((start, text[start:boundary.start()]))
+        sentences.append((start, text[start:boundary.start()]))
         start = boundary.end()
-    spans.append((start, text[start:]))
-    for offset, raw_sentence in spans:
+    sentences.append((start, text[start:]))
+    spans = []
+    for group, (sentence_offset, original) in enumerate(sentences):
+        # A bare continuation inherits its actor/modality from the preceding
+        # clause. Retain the original sentence for exclusion checks so splitting
+        # cannot turn 'If I merged ... and updated ...' into a completion.
+        local_start = 0
+        dividers = list(re.finditer(r";\s+|\s+and\s+(?=(?:" + PAST_VERBS + r")\b)", original, re.I))
+        for divider in dividers:
+            spans.append((sentence_offset + local_start, original[local_start:divider.start()],
+                          group, original, sentence_offset, local_start == 0))
+            local_start = divider.end()
+        spans.append((sentence_offset + local_start, original[local_start:],
+                      group, original, sentence_offset, local_start == 0))
+    current_group = None
+    own_clause = False
+    for offset, raw_sentence, group, original, group_offset, first_clause in spans:
+        if group != current_group:
+            current_group = group
+            own_clause = False
         offset += len(raw_sentence) - len(raw_sentence.lstrip())
         sentence = raw_sentence.strip()
-        if not sentence or "?" in sentence:
+        role = re.match(r"\s*[\w .-]+\s*[:—]\s*", original)
+        if (not sentence or "?" in original or CONDITIONAL.search(original)
+                or INVERTED_QUESTION.search(original)
+                or (role and not BARE_PATTERN.match(role.group(0)) and _role_prefix(role.group(0), str(agent)))):
             continue
         matches = list(CLAIM_PATTERN.finditer(sentence))
+        candidates = []
         for number, match in enumerate(matches):
-            prefix = sentence[:match.start()]
-            if _inside_quote(text, offset + match.start()) or REPORTING.search(prefix):
+            prefix = original[:offset - group_offset + match.start()]
+            if (REPORTING.search(prefix) or UNCERTAIN_PREFIX.search(prefix)
+                    or _role_prefix(prefix, str(agent))):
                 continue
             end = matches[number + 1].start() if number + 1 < len(matches) else len(sentence)
             target = sentence[match.end():end].strip(" .!;,:")
-            if not target or NEGATED_TARGET.match(target):
+            candidates.append((match.start(), end, match.group("verb").lower(), target, False, match.start()))
+        if not matches and (first_clause or own_clause):
+            bare = BARE_PATTERN.match(sentence)
+            state = STATE_PATTERN.match(sentence)
+            if bare and not re.search(r"\byet\s*[.!]*$", sentence, re.I):
+                candidates.append((bare.start(), len(sentence), bare.group("verb").lower(),
+                                   sentence[bare.end():], False, bare.end() - 1))
+            elif state:
+                target = state.group("target").strip()
+                rest = sentence[state.end():]
+                future_state = (state.group("verb").lower() not in ("scheduled", "booked")
+                                and re.search(r"\b(?:tomorrow|next\s+\w+|later)\b", rest, re.I))
+                if (not UNCERTAIN_PREFIX.search(target) and not REPORTING.search(target)
+                        and not future_state and not re.search(r"\b(?:when|once|until|whenever|as\s+soon\s+as)\b", rest, re.I)
+                        and not _other_actor(rest, str(agent), agent_lookup=agent_lookup)):
+                    candidates.append((state.start(), state.end(), state.group("verb").lower(), target, True, state.end() - 1))
+        for begin, end, verb, target, is_state, anchor in candidates:
+            if _inside_quote(text, offset + anchor):
+                continue
+            verb, target = _closer_target(verb, target)
+            if not target or NEGATED_TARGET.match(target) or _other_actor(target, str(agent), is_state, agent_lookup):
                 continue
             if re.search(r"\b(?:nothing|so|it|that)\b", target, re.I) and not keywords(target):
                 continue
-            phrase = sentence[match.start():end].strip(" .!;,:")
-            verb = match.group("verb").lower()
+            phrase = sentence[begin:end].strip(" .!;,:")
             row_id = str(row["row_id"])
             claims.append(Claim(
                 claim_id=row_id if not claims else row_id + "#" + str(len(claims) + 1),
                 agent=str(agent), time=row.get("time"), source=str(row.get("source", "")),
                 row_id=row_id, text=sentence, matched_phrase=phrase, verb=verb,
                 target=target, keywords=keywords(target)))
+            own_clause = True
     return claims
 
 
@@ -242,7 +412,7 @@ def _failure_line(path, line):
     observed = _receipt(path, line)
     if SPECULATIVE.search(line):
         return False
-    status = HTTP_STATUS.search(observed)
+    status = HTTP_STATUS.search(observed) or BARE_HTTP_STATUS.search(line)
     exit_status = EXIT_STATUS.search(observed)
     if path.split(".")[-1].lower() in ("success", "ok") and line.lower() == "false":
         return True
@@ -267,11 +437,19 @@ def _success_line(path, line, category):
     if SIMULATED.search(line) or re.search(r"\b(?:not|never|no)\s+(?:a\s+)?(?:success|"
                                          r"successful|completed|done|sent|saved|posted|published)\b", line, re.I):
         return False
+    if re.search(r"^\s*(?:no|not|never)\b.{0,120}\b(?:sent|delivered|posted|published|"
+                 r"deployed|released|merged|pushed|shipped|scheduled|booked|filed|created|"
+                 r"updated|completed|finished|saved|written)\b", _zero_errors(line), re.I):
+        return False
     if _failure_line(path, line):
+        return False
+    # Draft persistence can return a successful HTTP status or a generic
+    # completion message. Neither establishes that a message left the draft.
+    if category in ("send", "post", "publish", "complete") and DRAFT.search(line):
         return False
     if PRELIMINARY.search(line) and not SPECIFIC_SUCCESS[category].search(line):
         return False
-    status = HTTP_STATUS.search(observed)
+    status = HTTP_STATUS.search(observed) or BARE_HTTP_STATUS.search(line)
     if status:
         # 202 acknowledges asynchronous acceptance, not completed delivery.
         return (200 <= int(status.group(1)) < 300 and int(status.group(1)) != 202
@@ -283,6 +461,8 @@ def _success_line(path, line, category):
     if category == "fix":
         return bool(SPECIFIC_SUCCESS[category].search(line) or
                     re.search(r"\b(?:fix|patch|repair)\b.{0,35}\b(?:applied|successful|successfully|succeeded)\b", line, re.I))
+    if category in ("push", "ship", "complete") and GIT_REF_SUCCESS.search(line):
+        return True
     if SPECIFIC_SUCCESS[category].search(line):
         return True
     if PRELIMINARY.search(line):
@@ -302,6 +482,11 @@ def _target_matches(claim, text):
 def _generic_outcome(path, line):
     # Field names like stdout do not identify task objects. Numeric status and
     # exit codes likewise do not introduce another target.
+    # A deployment tool may return only its generated URL, with no repeated
+    # task name. 'Live at' ties this URL to the operation, rather than naming a
+    # second task object in a generic success sentence.
+    if re.fullmatch(r"Live\s+at\s+https?://\S+", line, re.I):
+        return True
     words = {word for word in keywords(line) if not word.isdecimal()}
     return not (words - OUTCOME_WORDS)
 
@@ -323,6 +508,19 @@ def _operation_is_read_or_echo(actions):
                          r"\b(?:requests|http)\.(?:get|head)\s*\(|\bGET\s+(?:https?://|/)", line, re.I):
                 return True
     return False
+
+
+def _operation_only_saves_draft(actions):
+    """A save-draft operation does not become a send by mentioning intent."""
+    drafts = False
+    for path, line in actions:
+        leaf = path.split(".")[-1].lower()
+        if not path or leaf in ("command", "cmd", "action", "agent_action", "tool", "name", "method"):
+            normalized = line.replace("_", " ")
+            if re.match(r"^\s*(?:send|deliver|post|publish)\b", normalized, re.I):
+                return False
+            drafts = drafts or bool(DRAFT_OPERATION.search(normalized))
+    return drafts
 
 
 def _quote(path, line, original):
@@ -365,6 +563,8 @@ def classify_claim(claim, candidates):
             continue
         if _operation_is_read_or_echo(actions) or SIMULATED.search(action_text) or CLAIM_PATTERN.search(action_text):
             continue
+        if category in ("send", "post", "publish") and _operation_only_saves_draft(actions):
+            continue
         undo = bool(UNDO.search(action_text))
         operation_text = re.sub(r"https?://\S+", "", action_text).replace("_", " ")
         if not undo and not ACTION_PATTERNS[category].search(operation_text):
@@ -382,6 +582,11 @@ def classify_claim(claim, candidates):
             continue
         failures = [(p, line) for p, line in outcomes if _failure_line(p, line)]
         successes = [(p, line) for p, line in outcomes if _success_line(p, line, category)]
+        if category in ("send", "post", "publish", "complete") and any(DRAFT.search(line) for _, line in usable):
+            # A separate status field can acknowledge saving a draft. Require
+            # an explicit delivery/publication receipt if a draft is present.
+            successes = [(p, line) for p, line in successes
+                         if SPECIFIC_SUCCESS[category].search(line) and not DRAFT.search(line)]
         if (any(UNRESOLVED.search(line) or PRELIMINARY.search(line) for _, line in usable)
                 and not any(SPECIFIC_SUCCESS[category].search(line) for _, line in successes)):
             successes = []

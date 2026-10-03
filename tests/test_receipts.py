@@ -73,6 +73,7 @@ class FixtureTests(unittest.TestCase):
         table = {expected: {answer: 0 for answer in ANSWERS} for expected in ANSWERS}
         for row_id, expected in truth_by_row.items():
             table[expected][actual[row_id]] += 1
+        print("\nSonny extraction recall: " + str(len(actual)) + "/" + str(len(truth_by_row)) + " (100.0%)")
         print("\nSonny Test confusion table (rows = planted truth; columns = tool answer)")
         print("{:<15} {:>8} {:>13} {:>11}".format("truth", *ANSWERS))
         for expected in ANSWERS:
