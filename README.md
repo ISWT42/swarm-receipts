@@ -9,6 +9,8 @@
 > - **Data:** no data is included. The AI Village dataset is gated by its publishers.
 > - **Below:** the checker's own documentation, as it was built.
 
+![swarm-receipts by the numbers: the swarm finding, the bench, the first agent run, compute, receipts, time and models](audit/BY-THE-NUMBERS.png)
+
 An offline command-line checker for completion claims made by agents in a group.
 It extracts claims from chat messages and memories, then checks the same agent's
 computer-use actions and tool outputs for receipts. It uses Python 3's standard

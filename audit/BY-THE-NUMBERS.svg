@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="t d">
+  <title id="t">swarm-receipts by the numbers</title>
+  <desc id="d">AI Swarm Dynamics Hackathon, 3 to 4 October 2026. In the AI Village record, unbacked done claims still drew accepting replies 58 percent of the time, against 90 percent for backed claims, and about 7 percent of replies asked to check. Exploratory. The bench: 3 sealed exams of 150 planted claims; 2 rule-based checkers caught; a model reader passed narrowly, 141 of 150. The first agent run: chat 30 shown, 66 not shown, 4 contradicted; memory 8 shown, 22 not shown, 0 contradicted. About 1,200 local model reads on one mini PC CPU.</desc>
+  <style>
+    .f { font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    .ink { fill: #16181b; } .muted { fill: #4a5058; } .accent { fill: #1f5f3f; }
+    .kicker { font-size: 15px; letter-spacing: 1.6px; font-weight: 600; }
+    .title { font-size: 33px; font-weight: 700; }
+    .big { font-size: 112px; font-weight: 800; }
+    .vs { font-size: 50px; font-weight: 700; }
+    .cap { font-size: 19px; }
+    .label { font-size: 13px; letter-spacing: 1.4px; font-weight: 700; }
+    .num { font-size: 29px; font-weight: 800; }
+    .det { font-size: 14.5px; }
+    .row { font-size: 20px; font-weight: 600; }
+    .foot { font-size: 14px; }
+  </style>
+  <rect width="1200" height="675" fill="#f7f6f2"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#1f5f3f"/>
+
+  <text class="f kicker muted" x="48" y="56">SWARM-RECEIPTS · AI SWARM DYNAMICS HACKATHON · 3–4 OCTOBER 2026</text>
+  <text class="f title ink" x="48" y="100">When an agent in a swarm says “done”, does anyone check?</text>
+
+  <!-- Headline: the swarm finding -->
+  <text class="f big accent" x="44" y="232">58%</text>
+  <text class="f vs ink" x="290" y="230">vs 90%</text>
+  <text class="f cap ink" x="48" y="274">Unbacked “done” claims still drew accepting replies</text>
+  <text class="f cap ink" x="48" y="300">58% of the time (backed claims: 90%).</text>
+  <text class="f cap ink" x="48" y="326">About 7% of replies asked to check.</text>
+  <text class="f det muted" x="48" y="352">Exploratory: word patterns over the AI Village record.</text>
+
+  <!-- The run -->
+  <rect x="640" y="136" width="512" height="218" rx="12" fill="#ffffff" stroke="#dcd8cc"/>
+  <text class="f label muted" x="664" y="166">THE FIRST AGENT RUN · COMPLETE</text>
+  <text class="f det muted" x="664" y="198">Chat claims (100 sampled)</text>
+  <text class="f row ink" x="664" y="226">30 shown · 66 not shown · 4 contradicted</text>
+  <text class="f det muted" x="664" y="262">Memory claims (30 sampled)</text>
+  <text class="f row ink" x="664" y="290">8 shown · 22 not shown · 0 contradicted</text>
+  <text class="f det muted" x="664" y="326">Sampled with a Bitcoin-block seed. The checker's labels</text>
+  <text class="f det muted" x="664" y="345">await a person's review.</text>
+
+  <!-- Row 1 -->
+  <rect x="48" y="384" width="352" height="112" rx="12" fill="#ffffff" stroke="#dcd8cc"/>
+  <text class="f label muted" x="68" y="410">THE RECORD</text>
+  <text class="f num ink" x="68" y="446">46 agents</text>
+  <text class="f det muted" x="68" y="468">173,493 chat messages</text>
+  <text class="f det muted" x="68" y="487">2.51 million computer-use turns</text>
+
+  <rect x="424" y="384" width="352" height="112" rx="12" fill="#ffffff" stroke="#dcd8cc"/>
+  <text class="f label muted" x="444" y="410">THE BENCH</text>
+  <text class="f num ink" x="444" y="446">3 sealed exams</text>
+  <text class="f det muted" x="444" y="468">150 planted claims each · 2 checkers caught</text>
+  <text class="f det muted" x="444" y="487">A model reader passed, narrowly: 141 of 150</text>
+
+  <rect x="800" y="384" width="352" height="112" rx="12" fill="#ffffff" stroke="#dcd8cc"/>
+  <text class="f label muted" x="820" y="410">COMPUTE</text>
+  <text class="f num ink" x="820" y="446">1 mini PC</text>
+  <text class="f det muted" x="820" y="468">≈1,200 local model reads · ≈22 model-hours</text>
+  <text class="f det muted" x="820" y="487">2.1M+ prompt tokens · CPU only, no GPU</text>
+
+  <!-- Row 2 -->
+  <rect x="48" y="512" width="352" height="112" rx="12" fill="#ffffff" stroke="#dcd8cc"/>
+  <text class="f label muted" x="68" y="538">RECEIPTS</text>
+  <text class="f num ink" x="68" y="574">4 Bitcoin blocks</text>
+  <text class="f det muted" x="68" y="596">21 OpenTimestamps proofs · 9 FreeTSA stamps</text>
+  <text class="f det muted" x="68" y="615">Plans sealed before every run</text>
+
+  <rect x="424" y="512" width="352" height="112" rx="12" fill="#ffffff" stroke="#dcd8cc"/>
+  <text class="f label muted" x="444" y="538">TIME</text>
+  <text class="f num ink" x="444" y="574">≈39 hours</text>
+  <text class="f det muted" x="444" y="596">from first commit to final push</text>
+  <text class="f det muted" x="444" y="615">3–4 October 2026</text>
+
+  <rect x="800" y="512" width="352" height="112" rx="12" fill="#ffffff" stroke="#dcd8cc"/>
+  <text class="f label muted" x="820" y="538">MODELS</text>
+  <text class="f num ink" x="820" y="574">4 models</text>
+  <text class="f det muted" x="820" y="596">Readers: qwen3.5:9b, gemma4:12b (local)</text>
+  <text class="f det muted" x="820" y="615">Labellers: Claude, Claude Sonnet</text>
+
+  <text class="f foot muted" x="48" y="652">Numbers from this repository, its sealed files and the local run logs. Results are provisional until gate 4 and a person's review.</text>
+  <text class="f foot accent" x="1152" y="652" text-anchor="end">github.com/ISWT42/swarm-receipts</text>
+</svg>
