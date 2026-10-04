@@ -2,7 +2,9 @@
 
 > **AI Swarm Dynamics Hackathon (3–4 Oct 2026): start with [WRITEUP.md](WRITEUP.md).**
 >
-> - **The entry:** a planted-fault bench for swarm oversight tools, and the sealed audit in which the bench caught two baseline versions of this checker before either judged an agent: v1 at tag `v1-sealed`, v2 at tag `v2-sealed`.
+> - **The question:** when an agent in a swarm says "done", is it true, and does anyone check?
+> - **What happens when a "done" reaches the swarm (exploratory):** in the AI Village record, claims my checker couldn't back still drew accepting replies 58% of the time (90% for backed ones), and only about 7% of replies asked to check. A visible link earned slightly more acceptance, but no more checking.
+> - **The bench:** planted faults from real receipts. It caught two baseline versions of this checker before either judged an agent (tags `v1-sealed`, `v2-sealed`). A model reader then passed a fresh sealed exam, narrowly, and judged a sealed random sample of real claims: the first agent run, now complete, with its labels awaiting a person's review.
 > - **Where things are:** the bench, the sealed capsules, the designs, the results and the timestamp proofs are in [audit/](audit/README.md).
 > - **Data:** no data is included. The AI Village dataset is gated by its publishers.
 > - **Below:** the checker's own documentation, as it was built.
