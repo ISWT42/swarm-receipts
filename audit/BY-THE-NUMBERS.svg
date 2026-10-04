@@ -67,7 +67,7 @@
 
   <rect x="424" y="512" width="352" height="112" rx="12" fill="#ffffff" stroke="#dcd8cc"/>
   <text class="f label muted" x="444" y="538">TIME</text>
-  <text class="f num ink" x="444" y="574">≈39 hours</text>
+  <text class="f num ink" x="444" y="574">≈38½ hours</text>
   <text class="f det muted" x="444" y="596">from first commit to final push</text>
   <text class="f det muted" x="444" y="615">3–4 October 2026</text>
 
