@@ -1,0 +1,5 @@
+# The first agent run's plan, sealed 2026-10-04T05:14:28Z by Claude, before the sample is drawn and before any model call
+ffb78ca97d513083e33dddf4ddc96a675d499645231dcbc833ba9394cdc20831  AGENT-RUN-PLAN-2026-10-04.md
+badfcf72aa922a4d94fce2bca4ca6ea9137cd1d8f7014c63d67b1d76e7e6753e  ../2026-10-04-jev-update/JEV-UPDATE-SHA256.txt
+7448a6bc97c0f31faca1145d534d2184d8e799d50ed34c3f38932c8925049934  /c/Users/joshd/Data/g3/G3-RESULT-GEMMA-SHA256.txt
+d75710e25a09402e938bcc032b928f639b2238a9550d5572a71e44f74eded959  /c/Users/joshd/Data/results/p6_p7.json

@@ -1,0 +1,89 @@
+{
+ "replied": 200,
+ "errors": 0,
+ "raw_ones": 113,
+ "unverified_ones": 5,
+ "verified": {
+  "vs_consensus": {
+   "items": 180,
+   "tp": 84,
+   "fp": 12,
+   "fn": 8,
+   "precision": 0.875,
+   "recall": 0.913,
+   "f1": 0.894
+  },
+  "vs_pass1": {
+   "items": 200,
+   "tp": 87,
+   "fp": 21,
+   "fn": 10,
+   "precision": 0.806,
+   "recall": 0.897,
+   "f1": 0.849
+  },
+  "vs_pass2": {
+   "items": 200,
+   "tp": 93,
+   "fp": 15,
+   "fn": 14,
+   "precision": 0.861,
+   "recall": 0.869,
+   "f1": 0.865
+  }
+ },
+ "raw": {
+  "vs_consensus": {
+   "items": 180,
+   "tp": 87,
+   "fp": 13,
+   "fn": 5,
+   "precision": 0.87,
+   "recall": 0.946,
+   "f1": 0.906
+  },
+  "vs_pass1": {
+   "items": 200,
+   "tp": 90,
+   "fp": 23,
+   "fn": 7,
+   "precision": 0.796,
+   "recall": 0.928,
+   "f1": 0.857
+  },
+  "vs_pass2": {
+   "items": 200,
+   "tp": 97,
+   "fp": 16,
+   "fn": 10,
+   "precision": 0.858,
+   "recall": 0.907,
+   "f1": 0.882
+  }
+ },
+ "rules_vs_consensus": {
+  "items": 180,
+  "tp": 25,
+  "fp": 3,
+  "fn": 67,
+  "precision": 0.893,
+  "recall": 0.272,
+  "f1": 0.417
+ },
+ "mcnemar_recall_model_vs_rules": {
+  "claims": 92,
+  "model_only": 60,
+  "rules_only": 1,
+  "p_two_sided": 5.377642775528102e-17
+ },
+ "wilson95": {
+  "recall": [
+   0.838,
+   0.955
+  ],
+  "precision": [
+   0.794,
+   0.927
+  ]
+ }
+}

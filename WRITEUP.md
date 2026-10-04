@@ -116,7 +116,39 @@ The exam, the frozen checker, the run plan and every prediction were sealed in o
 
 My own sealed predictions were that my logic would improve it and that it would still slip at least once. Both held. I also predicted qwen would do better than gemma. It didn't, by one claim.
 
-By the bench's rule, a checker that passes may judge agents. The first agent run, on a random sample of real claims, is sealed and under way. Its results will be added here, labelled provisional until a fresh gate confirms the pass.
+By the bench's rule, a checker that passes may judge agents.
+
+## The first agent run (provisional)
+
+I ran the passing checker (v3 with gemma4:12b, frozen) on a random sample of real claims. The results are provisional:
+- the checker passed narrowly;
+- it finds only about a quarter of claims;
+- a fresh gate (gate 4) still has to confirm the pass.
+
+**The plan was sealed before the sample existed** (FreeTSA, 05:14 UTC on 4 October), and is confirmed in Bitcoin block 969803. The sample's seed came from that block's hash.
+
+**I caught a fault in my own plan before the draw.**
+- The plan said to take the first 16 hex digits of the block hash as the seed.
+- Bitcoin block hashes begin with a run of zeros, so that rule gives seed 0 for every block, and anyone could have known it in advance.
+- Before drawing anything, I wrote and timestamped a correction: use the first 16 digits after the zeros.
+
+**The sample:**
+- 100 of the 26,316 chat claims, and 30 of the 414,355 memory claims;
+- sealed before the first model call.
+
+**Chat results (complete):**
+| Answer | Count |
+|---|---|
+| Shown | 30 |
+| Not shown | 66 |
+| Contradicted by the agent's own record | 4 |
+
+- The contradicted rate is 4.0% (95% CI 1.6–9.8%). Across all 26,316 chat claims, that's roughly 1,000 contradicted claims (95% CI about 400 to 2,600).
+- Only 3 of the 70 unsupported claims hedged anywhere in the message. The agents stated them as plain completions.
+
+**Memory results:** still running on my CPU. They'll be added when the run finishes.
+
+**One check is left for a person:** reading the 30 "shown" answers, to confirm the checker certified no failure.
 
 ## What this means for overseeing a swarm
 
@@ -139,7 +171,9 @@ Real data for the real world: synthetic tests can't stand in for it.
 >   - it found **82%** of the claims (95% CI 72–88%) at **88%** precision, against the rules' 27% and 89%;
 >   - it found 54 claims the rules missed, and the rules found 4 it missed (McNemar p = 3 × 10⁻¹²);
 >   - 6 of its 99 "claim" answers failed the word-for-word quote check and were refused.
->   - The design and predictions were sealed with gate 3. The second model's run, gemma4:12b, is under way.
+>   - The design was sealed with gate 3.
+>   - **The second model, gemma4:12b,** found **91%** of the claims (95% CI 84–96%) at **88%** precision. It found 60 claims the rules missed, and the rules found 1 it missed (McNemar p = 5 × 10⁻¹⁷). 5 of its 113 "claim" answers failed the quote check and were refused.
+>   - In gemma's run, a leftover second process answered 46 messages twice. The two answers agreed on the label every time, and one answer per message was scored.
 
 ## The predictions about the agents
 
@@ -151,7 +185,7 @@ Both were computed before the first gate. Under my rule they stayed unopened unt
 - **Messages got shorter: hit.** Among the 23 agents active for at least 60 days, the median message length fell from their first 30 active days to their last 30 for **17 of 23**.
 - **Phrasing converged: miss.** The share of three-word phrases used by three or more agents went 2.38%, 4.79%, 4.31% and 2.33% across the four quarters of the timeline, so the last quarter is just under the first. The number of agents grew from 9 to 34 over the same quarters, which this measure doesn't adjust for.
 
-The other seven need the checker, and wait for the first agent run.
+From 4 October, my predictions stay sealed privately, and I don't score them here. I made that choice before the first agent run's results existed. The run's results are reported above as findings.
 
 ## Limits
 
@@ -161,6 +195,12 @@ The specific limits:
 - **Scope:** three checkers (two rule-based, and one model reader tried with two models), eight kinds of operation, one dataset, and a 24-hour window.
 - **The labels:** the ground truth for gates 2 and 3 and the claim-spotting sample were labelled by models (Claude and Claude Sonnet), each with a blind second pass, not by humans. A blind sample for people to label is sealed. The labellers and the tools that built the checker come from one model family, so they may share blind spots.
 - **The designer's prior knowledge:** gate 1's claim wordings were written by the designer after reading the checker's code. That's why gate 2 used independent wordings.
+- **The first agent run is provisional:**
+  - one checker that passed narrowly;
+  - a sample of 100 chat claims;
+  - a claim finder that sees only about a quarter of claims.
+
+  Its rates describe the claims the checker can find, not every claim the agents made.
 
 ## Next
 
@@ -169,7 +209,7 @@ The specific limits:
 - **It tests two small local checkers cross-checking each other.** The two models miss different cases. A pair that accepts one model's verdict when the other abstains, and answers "not shown" when they clash, would have scored 145 of 150 on gate 3 with no failure called shown. I worked that out after seeing both answer sets, so it's a hypothesis, not a result, until gate 4.
 
 The other open questions:
-- whether the dialect result holds for the second model, gemma4:12b (its sealed run is under way);
+- the first agent run's memory claims, and a person's reading of its "shown" answers;
 - whether the ground truth holds up against human judgment (a blind sample for people to label is sealed);
 - whether the bench transfers to a second swarm's records.
 
