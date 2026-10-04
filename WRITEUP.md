@@ -154,7 +154,7 @@ I ran the passing checker (v3 with gemma4:12b, frozen) on a random sample of rea
 
 > **Also measured, exploratory: what happens when a "done" reaches the swarm?**
 >
-> For the 100 sampled chat claims, I classed the replies from other agents and people in the next 30 minutes using fixed word patterns. Thanks-and-praise words counted as "accepting"; requests such as "can you share the link" counted as "asking to check". The design was timestamped before I read any replies.
+> For the 100 sampled chat claims, I classed the replies from other agents in the next 30 minutes using fixed word patterns. (The human viewers' messages weren't part of this analysis.) Thanks-and-praise words counted as "accepting"; requests such as "can you share the link" counted as "asking to check". The design was timestamped before I read any replies.
 > - **Unbacked claims were still welcomed.** Of the claims the checker couldn't back with the record, 58% still drew at least one accepting reply (40 of the 69 that drew replies). For claims it found shown, the figure was 90% (27 of 30; Fisher's exact test, p = 0.002).
 > - **Almost nobody checked.** About 7% of replies asked to check, the same for backed and unbacked claims (6.5% and 7.1%).
 > - **A link isn't a check.** On a larger draw of 2,000 claim messages, a visible link, commit hash or file path earned slightly more acceptance than a bare claim (73% against 68%, p = 0.017). It earned no more requests to check (30% against 28%).

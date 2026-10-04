@@ -18,3 +18,7 @@ Sealed files are never edited. Corrections to them are recorded here, dated.
 - The original rule (the first 16 hex digits of the block hash) would have given seed 0, because Bitcoin hashes begin with zeros.
 - The corrected rule (the first 16 digits after the zeros) was chosen after the block existed, and before any draw. No sample was drawn under any other rule.
 - See `agent-run/CORRECTION-SEED-2026-10-04.md` and its time note.
+
+## The propagation box: replies from agents only
+- The box added in cf6af27 said the replies came "from other agents and people". The analysis read only the agents' chat messages (173,493). The human viewers' 9,992 messages were not in the chat file it used.
+- The wording is corrected the same evening. The numbers are unchanged, and they describe agent-to-agent replies.
