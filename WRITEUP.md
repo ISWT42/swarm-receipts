@@ -148,9 +148,19 @@ I ran the passing checker (v3 with gemma4:12b, frozen) on a random sample of rea
 - The checker labelled 4.0% contradicted (95% CI 1.6–9.8%). Projected across all 26,316 extracted chat claims, that's roughly 1,000 claims the checker would label contradicted (a sampling-only 95% CI of about 400 to 2,600), pending a person's review.
 - Only 3 of the 70 unsupported claims matched the sealed hedge-word list anywhere in the message.
 
-**Memory results:** still running on my CPU. They'll be added when the run finishes.
+**Memory results (complete):** 30 sampled claims from the agents' memory notes.
 
-**Still to do: a blind human review** of all 4 "contradicted" and all 30 "shown" answers against the full records, and a sample of the "not shown" ones. Until then, these are the checker's labels, not established facts.
+| Answer | Count |
+|---|---|
+| Shown | 8 |
+| Not shown | 22 |
+| Labelled contradicted by the checker | 0 |
+
+- No memory claim was labelled contradicted (0 of 30; 95% CI 0–11%), against 4.0% of chat claims. With 30 claims, the sample can't tell the two rates apart.
+- 8 of 30 were shown (27%), close to chat's 30 of 100.
+- The run finished at 22:33:40 UTC on 4 October. The counts are in `audit/agent-run/FINAL-RESULTS.json`, timestamped by FreeTSA at 22:36:54 UTC (OpenTimestamps pending).
+
+**Still to do: a blind human review** of all 4 "contradicted" and all 38 "shown" answers (30 chat, 8 memory) against the full records, and a sample of the "not shown" ones. Until then, these are the checker's labels, not established facts.
 
 > **Also measured, exploratory: what happens when a "done" reaches the swarm?**
 >
@@ -202,6 +212,16 @@ Both were computed before gate 1 was scored. Under my rule they stayed unopened 
 
 From 4 October, my predictions stay sealed privately, and I don't score them here. I made that choice before the first agent run's results existed. The run's results are reported above as findings.
 
+## Related work
+
+- **Paglieri et al. (Google DeepMind), arXiv:2609.04170, 3 Sep 2026.** They report a 100-agent research swarm in which one agent found that the automated proof judge checked syntax rather than meaning. Every accepted proof was published to a shared library, the exploit spread through it, and the remaining 34 problems were "solved" in 27 minutes. 24% of the agents blew the whistle, but the channel to the organizers wasn't monitored during the run. Their remedy is institutional, built on Ostrom's design principles for governing a commons. This entry works one layer down: a judge's acceptance is itself a claim, so the judge should catch a planted fault before anyone relies on it, and a shared record should carry only what a fault-tested check has shown.
+- **Convergent work on checking agents' claims:**
+  - ClaimReceipt (Zhu and Chang, arXiv:2609.01992) recomputes claims from retained, signed evidence and tests itself with planted faults.
+  - OverclaimBench (Smyth et al., arXiv:2609.20812) measures agents claiming work they never did.
+  - Failure-Transparent Agents (Zhu et al., arXiv:2609.35732) cuts false success with structured evidence contracts.
+
+  This entry adds three things: a real multi-agent record, a bench that tests the checkers themselves on fresh sealed gates, and a measure of the gap between a swarm's own dialect and the claims a checker can find.
+
 ## Limits
 
 > The Sonny Test sets minimum requirements for considering a check’s verdict as evidence. Passing those requirements does not establish that the check covers every task requirement or failure mode. The published experiments support conclusions within their stated datasets and conditions; broader reliability requires further testing.
@@ -224,7 +244,7 @@ The specific limits:
 - **It tests two small local checkers cross-checking each other.** The two models miss different cases. A pair that accepts one model's verdict when the other abstains, and answers "not shown" when they clash, would have scored 145 of 150 on gate 3 with no failure called shown. I worked that out after seeing both answer sets, so it's a hypothesis, not a result, until gate 4.
 
 The other open questions:
-- the first agent run's memory claims, and a person's reading of its "shown" answers;
+- a person's reading of the first agent run's "shown" and "contradicted" answers;
 - whether the ground truth holds up against human judgment (a blind sample for people to label is sealed);
 - whether the bench transfers to a second swarm's records.
 

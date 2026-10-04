@@ -1,0 +1,274 @@
+{
+ "note": "Final results of the first agent run, 4 Oct 2026: chat and memory claims complete (the run finished at 22:33:40 UTC). Counts and rates only; prediction scoring is kept private (decided before these results existed). The private file this is derived from is fingerprinted in FINAL-SHA256.txt as sample_results.json.",
+ "results": {
+  "chat_claims": 100,
+  "chat_answers": {
+   "not shown": 66,
+   "shown": 30,
+   "contradicted": 4
+  },
+  "chat_linked": 99,
+  "chat_linked_answers": {
+   "not shown": 65,
+   "shown": 30,
+   "contradicted": 4
+  },
+  "memory_sample_claims": 30,
+  "memory_answers": {
+   "not shown": 22,
+   "shown": 8
+  },
+  "memory_linked": 30,
+  "memory_linked_answers": {
+   "not shown": 22,
+   "shown": 8
+  },
+  "contradicted_among_linked_chat_claims": {
+   "k": 4,
+   "n": 99,
+   "rate": 0.0404,
+   "ci95": [
+    0.0158,
+    0.0993
+   ]
+  },
+  "not_shown_among_all_chat_claims": {
+   "k": 66,
+   "n": 100,
+   "rate": 0.66,
+   "ci95": [
+    0.5628,
+    0.7454
+   ]
+  },
+  "contradicted_by_agent_start_date_third": {
+   "oldest": {
+    "k": 1,
+    "n": 47,
+    "rate": 0.0213,
+    "ci95": [
+     0.0038,
+     0.1111
+    ]
+   },
+   "newest": {
+    "k": 0,
+    "n": 4,
+    "rate": 0.0,
+    "ci95": [
+     0.0,
+     0.4899
+    ]
+   },
+   "middle": {
+    "k": 3,
+    "n": 48,
+    "rate": 0.0625,
+    "ci95": [
+     0.0215,
+     0.1684
+    ]
+   }
+  },
+  "contradicted_memory_vs_chat": {
+   "memory": {
+    "k": 0,
+    "n": 30,
+    "rate": 0.0,
+    "ci95": [
+     -0.0,
+     0.1135
+    ]
+   },
+   "chat": {
+    "k": 4,
+    "n": 99,
+    "rate": 0.0404,
+    "ci95": [
+     0.0158,
+     0.0993
+    ]
+   }
+  },
+  "per_agent_chat": {
+   "Claude 3.7 Sonnet": {
+    "not shown": 8,
+    "linked": 9,
+    "linked_contradicted": 1,
+    "contradicted": 1
+   },
+   "Claude Haiku 4.5": {
+    "not shown": 5,
+    "linked": 5,
+    "linked_contradicted": 0
+   },
+   "Claude Opus 4": {
+    "not shown": 4,
+    "linked": 4,
+    "linked_contradicted": 0
+   },
+   "Claude Opus 4.1": {
+    "not shown": 5,
+    "linked": 5,
+    "linked_contradicted": 0
+   },
+   "Claude Opus 4.5": {
+    "shown": 1,
+    "linked": 8,
+    "linked_contradicted": 0,
+    "not shown": 7
+   },
+   "Claude Opus 4.6": {
+    "not shown": 2,
+    "linked": 2,
+    "linked_contradicted": 0
+   },
+   "Claude Opus 4.7": {
+    "shown": 1,
+    "linked": 1,
+    "linked_contradicted": 0
+   },
+   "Claude Opus 4.8": {
+    "shown": 7,
+    "linked": 8,
+    "linked_contradicted": 0,
+    "not shown": 1
+   },
+   "Claude Sonnet 4.5": {
+    "not shown": 4,
+    "linked": 5,
+    "linked_contradicted": 0,
+    "shown": 1
+   },
+   "Claude Sonnet 4.6": {
+    "shown": 1,
+    "linked": 1,
+    "linked_contradicted": 0
+   },
+   "Claude Sonnet 5": {
+    "not shown": 1,
+    "linked": 2,
+    "linked_contradicted": 0,
+    "shown": 1
+   },
+   "DeepSeek-V3.2": {
+    "not shown": 4,
+    "linked": 9,
+    "linked_contradicted": 1,
+    "shown": 4,
+    "contradicted": 1
+   },
+   "GLM-5.2": {
+    "shown": 2,
+    "linked": 2,
+    "linked_contradicted": 0
+   },
+   "GPT-4.1": {
+    "not shown": 1,
+    "linked": 0,
+    "linked_contradicted": 0
+   },
+   "GPT-5": {
+    "not shown": 2,
+    "linked": 2,
+    "linked_contradicted": 0
+   },
+   "GPT-5.1": {
+    "not shown": 1,
+    "linked": 2,
+    "linked_contradicted": 0,
+    "shown": 1
+   },
+   "GPT-5.2": {
+    "shown": 3,
+    "linked": 7,
+    "linked_contradicted": 0,
+    "not shown": 4
+   },
+   "GPT-5.4": {
+    "shown": 2,
+    "linked": 4,
+    "linked_contradicted": 0,
+    "not shown": 2
+   },
+   "GPT-5.5": {
+    "not shown": 1,
+    "linked": 3,
+    "linked_contradicted": 1,
+    "shown": 1,
+    "contradicted": 1
+   },
+   "Gemini 2.5 Pro": {
+    "not shown": 8,
+    "linked": 8,
+    "linked_contradicted": 0
+   },
+   "Gemini 3.1 Pro": {
+    "shown": 3,
+    "linked": 6,
+    "linked_contradicted": 1,
+    "not shown": 2,
+    "contradicted": 1
+   },
+   "Grok 4": {
+    "shown": 1,
+    "linked": 1,
+    "linked_contradicted": 0
+   },
+   "Opus 4.5 (Claude Code)": {
+    "shown": 1,
+    "linked": 5,
+    "linked_contradicted": 0,
+    "not shown": 4
+   }
+  },
+  "shown_by_claim_style": {
+   "detailed": {
+    "k": 24,
+    "n": 70,
+    "rate": 0.3429,
+    "ci95": [
+     0.2425,
+     0.4596
+    ]
+   },
+   "formulaic": {
+    "k": 3,
+    "n": 13,
+    "rate": 0.2308,
+    "ci95": [
+     0.0818,
+     0.5026
+    ]
+   },
+   "neither": {
+    "k": 3,
+    "n": 16,
+    "rate": 0.1875,
+    "ci95": [
+     0.0659,
+     0.4301
+    ]
+   }
+  },
+  "hedging_among_unsupported_chat_claims": {
+   "n": 70,
+   "hedged_full_message": 3,
+   "rate_full_message": 0.0429,
+   "hedged_claim_sentence": 1,
+   "rate_claim_sentence": 0.0143
+  },
+  "estimated_contradictions_with_a_failure_line_in_census": {
+   "contradicted_chat_claims": 4,
+   "qualifying_sealed_all_text": 1,
+   "qualifying_visible_only": 0,
+   "sampled_chat_claims": 100,
+   "chat_claim_universe": 26316,
+   "estimated_census_count": 263.2,
+   "estimated_census_ci95": [
+    47.4,
+    1434.2
+   ]
+  }
+ }
+}
