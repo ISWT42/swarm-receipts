@@ -12,6 +12,7 @@ The write-up is [../WRITEUP.md](../WRITEUP.md). This folder holds everything nee
 | `claim-spotting/` | G2: the script, the pass-1 labels (ids and 0/1, with proof), the pass-2 labels (ids and 0/1 only), and the agreement and precision/recall summary. |
 | `run-plan/` | The analysis plan sealed before any real claim was checked (with its correction note), the parallel runner and index builder, the analysis scripts, the P3 model-date table, and the memory-claim sample (ids only, with proof). `P6-P7-RESULTS.json` is the two predictions that need no checker, computed on 3 Oct before gate 1 and opened on 4 Oct after a checker passed (its SHA-256, d75710e2..., was recorded in a sealed plan before opening; a fresh re-run of `p6_p7.py` reproduces it). |
 | `LABELLER-PROMPTS.md` | The exact instructions the independent labellers received. |
+| `CORRECTIONS-2026-10-04.md` | Dated corrections and amendments: a count error in a sealed gate 3 note, the change in how predictions are reported (decided before the first agent run's results existed), and the agent run's seed rule. Sealed files are never edited; corrections to them are recorded here. |
 
 ## Checking a seal
 1. **Hash it:** `sha256sum <file>` must match the value in the file's `*SHA256*.txt`.

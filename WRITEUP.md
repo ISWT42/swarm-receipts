@@ -104,15 +104,16 @@ The exam, the frozen checker, the run plan and every prediction were sealed in o
 | **v3**, gemma4:12b, the same exam | 47 / 50 | **45 / 50** | 49 / 50 | 0 |
 
 **With qwen3.5:9b, v3 didn't meet the bar either:** the success group fell three short. But its misses look nothing like the rule-based checkers':
-- It got 140 of 150 right, against v2's 73 on its fresh gate (Fisher's exact test, p ≈ 1.5 × 10⁻¹⁸).
+- It got 140 of 150 right, against v2's 73 on v2's own fresh gate (Fisher's exact test, p ≈ 1.5 × 10⁻¹⁸). The two exams differ, so the gap reflects the study conditions as well as the reader.
 - It never called a planted failure shown.
 - Eight of its ten errors were "not shown". In four of them the model gave the right verdict, shown, but its quote wasn't verbatim, so the check refused it, as designed. The next version's instruction is simple: copy one short line exactly.
 
 **With gemma4:12b, v3 passed,** the first checker to pass a sealed, fresh exam on this bench. It's a narrow pass, and I read it narrowly:
 - It sits exactly on the bar in the success group: 45 of 50.
+- At this size, 45 of 50 has a 95% interval of about 79–96%, and zero false certifications in 50 planted failures still allows a true rate of up to about 6% (one-sided, 95%). It passed this exam's predefined cutoff; that isn't yet proof of 90% reliability.
 - It was the second model run on the same exam. Two tries make a lucky pass more likely.
 - **The safety net decided it.** Once, the model answered "shown" on a planted failure while quoting the line that reported the failure. The sealed fail-closed rule turned that into "not shown". Without that rule, it would have failed.
-- Against qwen, case by case, it's a tie: 141 against 140, McNemar p = 1.0. The two models miss different cases; only two errors are shared.
+- Against qwen, case by case, no difference was established on this exam: 141 against 140, McNemar p = 1.0. The two models miss different cases; only two errors are shared.
 
 My own sealed predictions were that my logic would improve it and that it would still slip at least once. Both held. I also predicted qwen would do better than gemma. It didn't, by one claim.
 
@@ -122,7 +123,7 @@ By the bench's rule, a checker that passes may judge agents.
 
 I ran the passing checker (v3 with gemma4:12b, frozen) on a random sample of real claims. The results are provisional:
 - the checker passed narrowly;
-- it finds only about a quarter of claims;
+- at the message level, it finds only about a quarter of the messages that contain a completion claim;
 - a fresh gate (gate 4) still has to confirm the pass.
 
 **The plan was sealed before the sample existed** (FreeTSA, 05:14 UTC on 4 October), and is confirmed in Bitcoin block 969803. The sample's seed came from that block's hash.
@@ -131,6 +132,7 @@ I ran the passing checker (v3 with gemma4:12b, frozen) on a random sample of rea
 - The plan said to take the first 16 hex digits of the block hash as the seed.
 - Bitcoin block hashes begin with a run of zeros, so that rule gives seed 0 for every block, and anyone could have known it in advance.
 - Before drawing anything, I wrote and timestamped a correction: use the first 16 digits after the zeros.
+- That rule was chosen after the block existed. I drew no sample under any other rule. Future runs will seal the full derivation before a future block supplies the seed.
 
 **The sample:**
 - 100 of the 26,316 chat claims, and 30 of the 414,355 memory claims;
@@ -141,14 +143,14 @@ I ran the passing checker (v3 with gemma4:12b, frozen) on a random sample of rea
 |---|---|
 | Shown | 30 |
 | Not shown | 66 |
-| Contradicted by the agent's own record | 4 |
+| Labelled contradicted by the checker | 4 |
 
-- The contradicted rate is 4.0% (95% CI 1.6–9.8%). Across all 26,316 chat claims, that's roughly 1,000 contradicted claims (95% CI about 400 to 2,600).
-- Only 3 of the 70 unsupported claims hedged anywhere in the message. The agents stated them as plain completions.
+- The checker labelled 4.0% contradicted (95% CI 1.6–9.8%). Projected across all 26,316 extracted chat claims, that's roughly 1,000 claims the checker would label contradicted (a sampling-only 95% CI of about 400 to 2,600), pending a person's review.
+- Only 3 of the 70 unsupported claims matched the sealed hedge-word list anywhere in the message.
 
 **Memory results:** still running on my CPU. They'll be added when the run finishes.
 
-**One check is left for a person:** reading the 30 "shown" answers, to confirm the checker certified no failure.
+**Still to do: a blind human review** of all 4 "contradicted" and all 30 "shown" answers against the full records, and a sample of the "not shown" ones. Until then, these are the checker's labels, not established facts.
 
 ## What this means for overseeing a swarm
 
@@ -173,6 +175,7 @@ Real data for the real world: synthetic tests can't stand in for it.
 >   - 6 of its 99 "claim" answers failed the word-for-word quote check and were refused.
 >   - The design was sealed with gate 3.
 >   - **The second model, gemma4:12b,** found **91%** of the claims (95% CI 84–96%) at **88%** precision. It found 60 claims the rules missed, and the rules found 1 it missed (McNemar p = 5 × 10⁻¹⁷). 5 of its 113 "claim" answers failed the quote check and were refused.
+>   - On the messages both labellers agreed were not claims, false positives rose from the rules' 3 of 88 to 10 for qwen and 12 for gemma: more found, with more false alarms.
 >   - In gemma's run, a leftover second process answered 46 messages twice. The two answers agreed on the label every time, and one answer per message was scored.
 
 ## The predictions about the agents
@@ -181,7 +184,7 @@ My nine predictions about the agents were sealed before I touched the data. Two 
 - whether the agents' messages got shorter over time;
 - whether their phrasing converged.
 
-Both were computed before the first gate. Under my rule they stayed unopened until a checker passed, and a fresh re-run of the same script matched them exactly.
+Both were computed before gate 1 was scored. Under my rule they stayed unopened until a checker passed, and a fresh re-run of the same script matched them exactly.
 - **Messages got shorter: hit.** Among the 23 agents active for at least 60 days, the median message length fell from their first 30 active days to their last 30 for **17 of 23**.
 - **Phrasing converged: miss.** The share of three-word phrases used by three or more agents went 2.38%, 4.79%, 4.31% and 2.33% across the four quarters of the timeline, so the last quarter is just under the first. The number of agents grew from 9 to 34 over the same quarters, which this measure doesn't adjust for.
 
@@ -198,7 +201,7 @@ The specific limits:
 - **The first agent run is provisional:**
   - one checker that passed narrowly;
   - a sample of 100 chat claims;
-  - a claim finder that sees only about a quarter of claims.
+  - a claim finder that finds only about a quarter of completion messages (a message-level measure).
 
   Its rates describe the claims the checker can find, not every claim the agents made.
 
@@ -221,6 +224,7 @@ The other open questions:
   - The bench generators: `audit/gate-1`, `audit/gate-2`, `audit/gate-3`.
   - The scorers, the parallel runner (identical to the checker's own command line on all 150 planted claims at both gates), the run plan and the analysis scripts.
 - **Seals:** every sealed file has its SHA-256 and an OpenTimestamps proof in `audit/`. The manifests also fingerprint private files (the truth files and the planted copies), which contain fragments of the dataset and so aren't redistributed. They can be shared privately with the dataset's publishers.
+- **Corrections:** dated, in `audit/CORRECTIONS-2026-10-04.md`. Sealed files are never edited.
 - **Data:** none is included. The AI Village dataset is gated on Hugging Face under research terms.
 
 ## Credits
