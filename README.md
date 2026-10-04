@@ -256,3 +256,9 @@ Claude for v3's model reader) under Joshua Bauer's direction.
 - **Can later narration verify earlier work?** No: only relevant computer-use
   actions and tool outputs before the claim qualify. A concrete earlier
   receipt, with a matching agent and action, could establish the outcome.
+
+## License
+
+- **Code:** MIT ([LICENSE](LICENSE)).
+- **The write-up, audit documents and figures:** CC BY 4.0 ([LICENSE-docs](LICENSE-docs)).
+- **Data:** none is included. The AI Village dataset is gated by its publishers under their own terms.

@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Swarm receipts: plant a fault before you trust the monitor"
+type: software
+authors:
+  - family-names: Bauer
+    given-names: Joshua
+    orcid: "https://orcid.org/0009-0003-1652-2479"
+license: MIT
+repository-code: "https://github.com/ISWT42/swarm-receipts"
+version: 1.0.0
+date-released: 2026-10-04
+keywords:
+  - AI agents
+  - multi-agent systems
+  - agent oversight
+  - LLM evaluation
+  - receipts
