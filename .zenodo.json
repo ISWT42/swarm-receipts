@@ -1,0 +1,36 @@
+{
+  "title": "Swarm receipts: plant a fault before you trust the monitor",
+  "upload_type": "software",
+  "description": "<p>A planted-fault test bench for swarm oversight tools, built on the real AI Village record (46 agents), and the sealed audit in which it caught two baseline checkers before either judged an agent. A local model reader then passed a fresh sealed exam, narrowly, and judged a sealed random sample of real claims (the first agent run, complete; its labels await a person's review). Exploratory: in the same record, claims the checker couldn't back still drew accepting replies 58% of the time (90% for backed claims), and about 7% of replies asked to check.</p><p>Entry for the AI Swarm Dynamics Hackathon (AI Village and Grove Research), 3 to 4 October 2026. The judged version is tagged hackathon-final; this release adds only the license and citation files. Code: MIT. Write-up, audit documents and figures: CC BY 4.0 (LICENSE-docs). No AI Village data is included. Built on my method, the Sonny Test.</p>",
+  "creators": [
+    {
+      "name": "Bauer, Joshua",
+      "orcid": "0009-0003-1652-2479"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "AI agents",
+    "multi-agent systems",
+    "agent oversight",
+    "LLM evaluation",
+    "receipts"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.23117475",
+      "relation": "references",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.34740/kaggle/w/116515",
+      "relation": "references",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://theaidigest.org/village",
+      "relation": "references",
+      "scheme": "url"
+    }
+  ]
+}
