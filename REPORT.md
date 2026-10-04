@@ -1,5 +1,7 @@
 # swarm-receipts report: fix round 2
 
+> **Historical note (4 Oct 2026):** this report was written during the build on 3 October, before dataset access arrived. The gates and the agent run in WRITEUP.md use the full AI Village dataset.
+
 Fixed evidence linking when the claimed object appears in the same agent's
 action or session goal, while the output gives a generic confirmation. Within
 the configured window, meaningful object-word overlap can associate a turn;

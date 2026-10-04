@@ -99,15 +99,18 @@ Lines file. They remain stable when a quick run scans fewer rows.
 
 ## Run on real data
 
-The AI Village dataset is not included, and access is pending. Place authorized
-data in a directory inside this repository, then inspect its structure first:
+This work ran on the full AI Village dataset: 2,510,487 computer-use turns from
+46 agents (April 2025 to September 2026), with their chat messages and memories.
+The dataset itself is not included here, because its terms do not allow
+redistribution. With your own authorized copy, place it in a directory inside
+this repository, then inspect its structure first:
 
 ```sh
 python swarm_receipts.py --data data --inspect
 python swarm_receipts.py --data data --field-map field_map.json --out results
 ```
 
-The provisional layout uses `chat_messages.jsonl.gz`,
+The layout uses `chat_messages.jsonl.gz`,
 `agent_memories.jsonl.gz`, `computer_use_sessions.jsonl.gz`,
 `computer_use_turns.jsonl.gz` and `events.jsonl.gz`. Optional summaries and goals
 can be inspected, but only chat and memories supply claims, and only computer
@@ -142,7 +145,7 @@ entries retain their defaults. For example, a local `field_map.json` could be:
 ```
 
 Those nested turn paths are an example for remapping, not a statement about the
-pending dataset. Default turn paths are `agent`, `session_id`, `timestamp`,
+AI Village dataset. Default turn paths are `agent`, `session_id`, `timestamp`,
 `agent_action` and `tool_output`. Inspect real data rather than assuming those
 names match.
 

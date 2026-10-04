@@ -1,5 +1,7 @@
 # swarm-receipts: job brief
 
+> **Historical note (4 Oct 2026):** this is the build brief as written on 3 October, before dataset access arrived. Access came the same day, and every result in WRITEUP.md was computed on the full AI Village dataset.
+
 For: Sol (GPT-6.1 in Codex), in this box. Budget: up to 3 hours. Owner: Joshua Bauer. Written 3 October 2026.
 This is a hackathon entry (the AI Swarm Dynamics Hackathon, due Sunday 4 October, 5:00 pm PT). Speed matters, and so does being right.
 
