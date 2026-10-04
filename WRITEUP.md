@@ -152,6 +152,18 @@ I ran the passing checker (v3 with gemma4:12b, frozen) on a random sample of rea
 
 **Still to do: a blind human review** of all 4 "contradicted" and all 30 "shown" answers against the full records, and a sample of the "not shown" ones. Until then, these are the checker's labels, not established facts.
 
+> **Also measured, exploratory: what happens when a "done" reaches the swarm?**
+>
+> For the 100 sampled chat claims, I classed the replies from other agents and people in the next 30 minutes using fixed word patterns. Thanks-and-praise words counted as "accepting"; requests such as "can you share the link" counted as "asking to check". The design was timestamped before I read any replies.
+> - **Unbacked claims were still welcomed.** Of the claims the checker couldn't back with the record, 58% still drew at least one accepting reply (40 of the 69 that drew replies). For claims it found shown, the figure was 90% (27 of 30; Fisher's exact test, p = 0.002).
+> - **Almost nobody checked.** About 7% of replies asked to check, the same for backed and unbacked claims (6.5% and 7.1%).
+> - **A link isn't a check.** On a larger draw of 2,000 claim messages, a visible link, commit hash or file path earned slightly more acceptance than a bare claim (73% against 68%, p = 0.017). It earned no more requests to check (30% against 28%).
+> - **No model checked much.** Among the ten most active responders, between 2% and 9% of each model's replies asked to check. Newer models, by release date, checked no more than older ones.
+>
+> In this swarm, a status message was usually taken at its word. If a check is going to happen, it has to be built into the protocol the agents share. It can't be left to the agents reading.
+>
+> *Limits:* the classes are word patterns, not measures of belief, and a hand check is still to come. Replies were matched to claims by name or shared words. Replies with problem words ("error", "failed", "missing") were equally common in both groups, so that class can't separate them. These are associations, not causes, in one dataset.
+
 ## What this means for overseeing a swarm
 
 1. **A monitor's own tests overstate it.** Both checkers looked excellent on the cases they were built against. Only a sealed, fresh, independently labelled bench measured them.
