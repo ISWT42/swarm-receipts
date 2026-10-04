@@ -1,0 +1,7 @@
+# Dialect test, qwen3.5:9b: results and run files, sealed 2026-10-04T06:45:36Z by Claude, right after scoring
+7f5115414ac070df79d9ed297670fd6a1f700ddb08f49beeda8d61378512f361  qwen3.5-9b/results.json
+ed98d15f5d9c7f4180273586155bfe86ad48beac60600c48fc7332c89426de01  qwen3.5-9b/run_info.json
+c1ffda68fdb744896593861317ed0c5ea1559db1ad2c65241f3a07bc65c3ec7f  qwen3.5-9b/replies.jsonl
+d196f7a36a667a9ee0470e6b36f42e3328f440b9a80562890b5d35009c4c473d  score-qwen3.5-9b.txt
+e2a3f9985e79ece376e22f08a1a9325ec9b0ad4718f03378bdfa5fa558dbb222  run-dialect-qwen3.5-9b.log
+add3313b900c59cd32a00752ef1c6b3b4bc29ed96d587d5f75c0f33c130786bf  spot_claims.py

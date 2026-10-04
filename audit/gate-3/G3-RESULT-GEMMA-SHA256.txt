@@ -1,0 +1,8 @@
+# Gate 3, v3 with gemma4:12b: the scored result and the run's own files, sealed 2026-10-04T05:06:31Z by Claude, right after scoring
+efff50ace23564ec9f28e6b04df23ee437f2ae4a3e82f505e3cc2d34d7962243  G3-RESULT-gemma4-12b.json
+7b98338e523445e7c244efd0c53269f2fb8d215e1409451b94918f0fe3b77e37  out-gemma4-12b/claims.csv
+4c87f21529011f8bd0e31bbbda072aeac0858cdc3570426b34215d1c8e7ba442  out-gemma4-12b/run_info.json
+9d936aa12ecaeaa3575eda5e166ac876d62a2dbfbeb9fa79aff659561ac2fdea  out-gemma4-12b/reader_log.jsonl
+fe636b20c2616c6993d39993cccd3b2e12278d13155a391cb89a90105e24786f  out-gemma4-12b/reader_cache.jsonl
+94c9126290ffe402db82b6bc2f773d8e458eb1d643be001bfe1a04d7d657414d  run-gemma4-12b.log
+8f3d4da05b48ede59d7d6c45dfeca04d3e9749c460bff7595053ab90e0f27d9c  score-gemma4-12b-stdout.txt

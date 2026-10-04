@@ -1,0 +1,20 @@
+Gate 3 other-tool folder check, finished 2026-10-03T22:03:12Z, before the first exam call.
+Rule: any file in another AI tool's folder, changed after the gate 3 pool was drawn (newer than Data/g3/mine_g3.py), whose size matches a gate 3 file, or whose name is planted_rows*, truth.json, label_out_* or label_in_*, is hashed against every gate 3 file.
+Folders (find exit code: 0 finished cleanly; 1 finished but some subfolders could not be read; 124 timed out):
+  0 .claude-server-commander
+  0 .beam
+  0 .agents
+  0 .vscode-shared
+  0 .copilot
+  0 Desktop/Moonshots/sprints
+  0 .claude
+  0 .Astra
+  0 Workbench
+  0 .codex
+  0 AppData/Roaming/Claude
+  0 .gemini
+  1 Documents/Codex
+  1 Documents/ChatGPT
+Skipped inside .claude: projects, file-history and shell-snapshots (this session's own records). Pruned everywhere: node_modules, .git, .venv, site-packages and browser cache folders.
+Candidates: 0. Byte-identical copies of gate 3 files: 0.
+Earlier, broader scans (all of Documents, Desktop and AppData) were stopped before finishing; this targeted scan replaces them.

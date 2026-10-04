@@ -1,0 +1,3 @@
+# Gate 3, gemma4:12b: the result write-up (no record text), sealed 2026-10-04T05:17:15Z by Claude; the scored files were sealed at 05:06:43 UTC (G3-RESULT-GEMMA-SHA256.txt)
+07d3507844ecd86b48f22013d336fb2813e7170fb51487004b83080e2c7d32dc  G3-RESULT-gemma4-12b.md
+7448a6bc97c0f31faca1145d534d2184d8e799d50ed34c3f38932c8925049934  G3-RESULT-GEMMA-SHA256.txt

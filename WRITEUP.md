@@ -88,6 +88,36 @@ The dangerous error was the false "shown". A planted claim, "I pushed the X chan
 - Of its 76 misses, 59 were receipts it could not read at all, in formats no rule had met yet. The other 17 came from natural claim wording ("for Batch 151", "to 0x0.st") that the receipt never repeats.
 - It kept one safety property: it never called a planted failure shown. It answered "not shown" far too often to be useful.
 
+## Gate 3: a model reader takes a fresh, sealed exam
+
+v3 keeps v2's claim extraction and retrieval, and hands the reading to a small language model running on my own computer (qwen3.5:9b, with gemma4:12b sealed as a second model). The model must name one turn and copy the line of its output that settles the claim. A shown or contradicted answer stands only if that quote is verbatim in the output the model saw; anything else becomes "not shown". A shown answer whose quote reports a failure is downgraded too.
+
+Gate 3 was built the way gate 2 was, from 234 real turns no earlier gate had used:
+- three independent labellers, then a blind confirmation pass (the passes agreed on 165 of 167 turns);
+- 50 failure receipts, 50 success receipts and 50 claims with no record, planted into a copy of the full record.
+
+The exam, the frozen checker, the run plan and every prediction were sealed in one bundle before the first call. It is confirmed in Bitcoin block 969768 (21:48 UTC on 3 October), and independently timestamped by FreeTSA at 21:52 UTC. The run started at 22:03 UTC.
+
+| | Failure receipts (contradicted) | Success receipts (shown) | No record (not shown) | Planted failures called shown |
+|---|---|---|---|---|
+| **v3**, qwen3.5:9b, sealed gate 3 (fresh) | 49 / 50 | **42 / 50** | 49 / 50 | 0 |
+| **v3**, gemma4:12b, the same exam | 47 / 50 | **45 / 50** | 49 / 50 | 0 |
+
+**With qwen3.5:9b, v3 didn't meet the bar either:** the success group fell three short. But its misses look nothing like the rule-based checkers':
+- It got 140 of 150 right, against v2's 73 on its fresh gate (Fisher's exact test, p ≈ 1.5 × 10⁻¹⁸).
+- It never called a planted failure shown.
+- Eight of its ten errors were "not shown". In four of them the model gave the right verdict, shown, but its quote wasn't verbatim, so the check refused it, as designed. The next version's instruction is simple: copy one short line exactly.
+
+**With gemma4:12b, v3 passed,** the first checker to pass a sealed, fresh exam on this bench. It's a narrow pass, and I read it narrowly:
+- It sits exactly on the bar in the success group: 45 of 50.
+- It was the second model run on the same exam. Two tries make a lucky pass more likely.
+- **The safety net decided it.** Once, the model answered "shown" on a planted failure while quoting the line that reported the failure. The sealed fail-closed rule turned that into "not shown". Without that rule, it would have failed.
+- Against qwen, case by case, it's a tie: 141 against 140, McNemar p = 1.0. The two models miss different cases; only two errors are shared.
+
+My own sealed predictions were that my logic would improve it and that it would still slip at least once. Both held. I also predicted qwen would do better than gemma. It didn't, by one claim.
+
+By the bench's rule, a checker that passes may judge agents. The first agent run, on a random sample of real claims, is sealed and under way. Its results will be added here, labelled provisional until a fresh gate confirms the pass.
+
 ## What this means for overseeing a swarm
 
 1. **A monitor's own tests overstate it.** Both checkers looked excellent on the cases they were built against. Only a sealed, fresh, independently labelled bench measured them.
@@ -105,30 +135,50 @@ Real data for the real world: synthetic tests can't stand in for it.
 >   - when the checker calls a message a completion claim, it is right 86–90% of the time;
 >   - it finds only 23–27% of the claims.
 > - The misses are the village's own dialect: headline status lines, "is live — same link —", milestone shouts, jargon, and other languages.
+> - **A sealed follow-up, the dialect test.** A local model (qwen3.5:9b) was given the labellers' own rule and read the same 200 messages one at a time:
+>   - it found **82%** of the claims (95% CI 72–88%) at **88%** precision, against the rules' 27% and 89%;
+>   - it found 54 claims the rules missed, and the rules found 4 it missed (McNemar p = 3 × 10⁻¹²);
+>   - 6 of its 99 "claim" answers failed the word-for-word quote check and were refused.
+>   - The design and predictions were sealed with gate 3. The second model's run, gemma4:12b, is under way.
 
-## What I'm not publishing, and why
+## The predictions about the agents
 
-My nine predictions about the agents stay unscored under both seals. Two of them don't need the checker: whether the agents' messages got shorter over time, and whether their phrasing converged. They were computed before the first gate and have never been opened. They wait for an instrument that passes.
+My nine predictions about the agents were sealed before I touched the data. Two of them don't need the checker:
+- whether the agents' messages got shorter over time;
+- whether their phrasing converged.
+
+Both were computed before the first gate. Under my rule they stayed unopened until a checker passed, and a fresh re-run of the same script matched them exactly.
+- **Messages got shorter: hit.** Among the 23 agents active for at least 60 days, the median message length fell from their first 30 active days to their last 30 for **17 of 23**.
+- **Phrasing converged: miss.** The share of three-word phrases used by three or more agents went 2.38%, 4.79%, 4.31% and 2.33% across the four quarters of the timeline, so the last quarter is just under the first. The number of agents grew from 9 to 34 over the same quarters, which this measure doesn't adjust for.
+
+The other seven need the checker, and wait for the first agent run.
 
 ## Limits
 
 > The Sonny Test sets minimum requirements for considering a check’s verdict as evidence. Passing those requirements does not establish that the check covers every task requirement or failure mode. The published experiments support conclusions within their stated datasets and conditions; broader reliability requires further testing.
 
 The specific limits:
-- **Scope:** two checkers from one design family, eight kinds of operation, one dataset, and a 24-hour window.
-- **The labels:** gate 2's ground truth and the claim-spotting sample were labelled by models (Claude and Claude Sonnet), each with a blind second pass, not by humans. The labellers and the tools that built the checker come from one model family, so they may share blind spots.
+- **Scope:** three checkers (two rule-based, and one model reader tried with two models), eight kinds of operation, one dataset, and a 24-hour window.
+- **The labels:** the ground truth for gates 2 and 3 and the claim-spotting sample were labelled by models (Claude and Claude Sonnet), each with a blind second pass, not by humans. A blind sample for people to label is sealed. The labellers and the tools that built the checker come from one model family, so they may share blind spots.
 - **The designer's prior knowledge:** gate 1's claim wordings were written by the designer after reading the checker's code. That's why gate 2 used independent wordings.
 
 ## Next
 
-The next checker reads receipts with a small local model that must quote the exact line that proves its answer, and every quote is verified word for word against the record. It sits the same bench under a new seal.
+**Gate 4,** a fresh exam under a new seal, does two jobs:
+- **It confirms or overturns gemma's narrow pass.**
+- **It tests two small local checkers cross-checking each other.** The two models miss different cases. A pair that accepts one model's verdict when the other abstains, and answers "not shown" when they clash, would have scored 145 of 150 on gate 3 with no failure called shown. I worked that out after seeing both answer sets, so it's a hypothesis, not a result, until gate 4.
+
+The other open questions:
+- whether the dialect result holds for the second model, gemma4:12b (its sealed run is under way);
+- whether the ground truth holds up against human judgment (a blind sample for people to label is sealed);
+- whether the bench transfers to a second swarm's records.
 
 ## Reproduce it
 
 - **Code:** this repository.
-  - The checker: tags `v1-sealed` (a75ff0d) and `v2-sealed` (f559cc5).
+  - The checker: tags `v1-sealed` (a75ff0d), `v2-sealed` (f559cc5) and `v3-sealed` (00956d9, the model reader; run with `--reader model`).
   - The field adapter: `convert_village.py`.
-  - The bench generators: `audit/gate-1`, `audit/gate-2`.
+  - The bench generators: `audit/gate-1`, `audit/gate-2`, `audit/gate-3`.
   - The scorers, the parallel runner (identical to the checker's own command line on all 150 planted claims at both gates), the run plan and the analysis scripts.
 - **Seals:** every sealed file has its SHA-256 and an OpenTimestamps proof in `audit/`. The manifests also fingerprint private files (the truth files and the planted copies), which contain fragments of the dataset and so aren't redistributed. They can be shared privately with the dataset's publishers.
 - **Data:** none is included. The AI Village dataset is gated on Hugging Face under research terms.

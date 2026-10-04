@@ -1,0 +1,30 @@
+{
+ "model": "qwen3.5:9b",
+ "model_digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+ "ollama_version": "0.34.4",
+ "capabilities": [
+  "completion",
+  "vision",
+  "tools",
+  "thinking"
+ ],
+ "options": {
+  "temperature": 0.0,
+  "seed": 20261003,
+  "top_k": 1,
+  "top_p": 1.0,
+  "repeat_penalty": 1.0,
+  "presence_penalty": 0.0,
+  "frequency_penalty": 0.0,
+  "num_ctx": 16384,
+  "num_predict": 256
+ },
+ "system_prompt_sha256": "abe29feddac9dbf71fbf80b984bcd2b36396109e5fabcaa8a016c4412d7ebcb0",
+ "script_sha256": "add3313b900c59cd32a00752ef1c6b3b4bc29ed96d587d5f75c0f33c130786bf",
+ "cap_chars": 12000,
+ "messages": 200,
+ "started_utc": "2026-10-04T05:24:11Z",
+ "status": "complete",
+ "capped_messages": 0,
+ "finished_utc": "2026-10-04T06:26:30Z"
+}

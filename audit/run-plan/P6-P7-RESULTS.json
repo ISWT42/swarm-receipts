@@ -1,0 +1,208 @@
+{
+ "P6": {
+  "agents": 23,
+  "fell": 17,
+  "hit": true,
+  "per_agent": [
+   {
+    "agent": "GPT-5.5",
+    "active_days": 104,
+    "median_first30": 57.0,
+    "median_last30": 51.5,
+    "fell": true
+   },
+   {
+    "agent": "Claude Sonnet 4.6",
+    "active_days": 145,
+    "median_first30": 76,
+    "median_last30": 48.0,
+    "fell": true
+   },
+   {
+    "agent": "Gemini 3.5 Flash",
+    "active_days": 85,
+    "median_first30": 54.0,
+    "median_last30": 55,
+    "fell": false
+   },
+   {
+    "agent": "Claude Opus 4.5",
+    "active_days": 200,
+    "median_first30": 81.0,
+    "median_last30": 57,
+    "fell": true
+   },
+   {
+    "agent": "Gemini 3.1 Pro",
+    "active_days": 130,
+    "median_first30": 61,
+    "median_last30": 37,
+    "fell": true
+   },
+   {
+    "agent": "DeepSeek-V3.2",
+    "active_days": 207,
+    "median_first30": 132,
+    "median_last30": 51.0,
+    "fell": true
+   },
+   {
+    "agent": "Claude 3.7 Sonnet",
+    "active_days": 236,
+    "median_first30": 72,
+    "median_last30": 96,
+    "fell": false
+   },
+   {
+    "agent": "Gemini 2.5 Pro",
+    "active_days": 341,
+    "median_first30": 48.0,
+    "median_last30": 48.0,
+    "fell": false
+   },
+   {
+    "agent": "Claude Opus 4.8",
+    "active_days": 81,
+    "median_first30": 72,
+    "median_last30": 77,
+    "fell": false
+   },
+   {
+    "agent": "Claude Sonnet 4.5",
+    "active_days": 221,
+    "median_first30": 54,
+    "median_last30": 41.5,
+    "fell": true
+   },
+   {
+    "agent": "GPT-5",
+    "active_days": 241,
+    "median_first30": 37.0,
+    "median_last30": 39,
+    "fell": false
+   },
+   {
+    "agent": "Claude Opus 4.6",
+    "active_days": 132,
+    "median_first30": 78.0,
+    "median_last30": 53.0,
+    "fell": true
+   },
+   {
+    "agent": "GPT-5.2",
+    "active_days": 202,
+    "median_first30": 73,
+    "median_last30": 43.0,
+    "fell": true
+   },
+   {
+    "agent": "o3",
+    "active_days": 166,
+    "median_first30": 54.0,
+    "median_last30": 59,
+    "fell": false
+   },
+   {
+    "agent": "Claude Opus 4.1",
+    "active_days": 75,
+    "median_first30": 53,
+    "median_last30": 49,
+    "fell": true
+   },
+   {
+    "agent": "GPT-5.4",
+    "active_days": 130,
+    "median_first30": 67.0,
+    "median_last30": 51.0,
+    "fell": true
+   },
+   {
+    "agent": "GPT-5.1",
+    "active_days": 215,
+    "median_first30": 115,
+    "median_last30": 79,
+    "fell": true
+   },
+   {
+    "agent": "Gemini 3 Pro",
+    "active_days": 78,
+    "median_first30": 70,
+    "median_last30": 67.0,
+    "fell": true
+   },
+   {
+    "agent": "Claude Haiku 4.5",
+    "active_days": 235,
+    "median_first30": 66,
+    "median_last30": 39,
+    "fell": true
+   },
+   {
+    "agent": "Claude Opus 4",
+    "active_days": 77,
+    "median_first30": 54.0,
+    "median_last30": 49.0,
+    "fell": true
+   },
+   {
+    "agent": "Claude Opus 4.7",
+    "active_days": 99,
+    "median_first30": 95.0,
+    "median_last30": 56,
+    "fell": true
+   },
+   {
+    "agent": "Kimi K2.6",
+    "active_days": 95,
+    "median_first30": 60.5,
+    "median_last30": 53.0,
+    "fell": true
+   },
+   {
+    "agent": "Claude Fable 5",
+    "active_days": 62,
+    "median_first30": 70.0,
+    "median_last30": 69,
+    "fell": true
+   }
+  ]
+ },
+ "P7": {
+  "timeline": [
+   "2025-04-02 18:00:17.698538",
+   "2026-09-18 23:58:11.188784"
+  ],
+  "spans": [
+   {
+    "span": 1,
+    "agents": 9,
+    "distinct_trigrams": 796107,
+    "shared_by_3plus": 18962,
+    "share": 0.02382
+   },
+   {
+    "span": 2,
+    "agents": 14,
+    "distinct_trigrams": 1466861,
+    "shared_by_3plus": 70190,
+    "share": 0.04785
+   },
+   {
+    "span": 3,
+    "agents": 18,
+    "distinct_trigrams": 2312609,
+    "shared_by_3plus": 99576,
+    "share": 0.04306
+   },
+   {
+    "span": 4,
+    "agents": 34,
+    "distinct_trigrams": 3380557,
+    "shared_by_3plus": 78823,
+    "share": 0.02332
+   }
+  ],
+  "hit": false
+ },
+ "computed_at": "2026-10-03T09:50:00Z"
+}
