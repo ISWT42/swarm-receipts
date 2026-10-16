@@ -17,7 +17,7 @@ Before any such tool may judge an agent, it has to pass a simpler test: does it 
 
 ## The method: the Sonny Test
 
-My method is the Sonny Test (doi:10.5281/zenodo.23117476). A check counts only if:
+My method is the Sonny Test (https://github.com/ISWT42/sonny-test). A check counts only if:
 - its verdict comes from a record the AI being tested can't change;
 - it has already caught a fault planted on purpose.
 
